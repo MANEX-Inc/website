@@ -16,24 +16,24 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --primary: #7c3aed;
-            --primary-light: #8b5cf6;
-            --accent: #0891b2;
-            --accent2: #f59e0b;
-            --dark: #f8fafc;
+            --primary: #6d28d9;
+            --primary-light: #7c3aed;
+            --accent: #0f766e;
+            --accent2: #d97706;
+            --dark: #f3f4f6;
             --dark2: #ffffff;
-            --card-bg: rgba(255,255,255,0.9);
-            --glass: rgba(124, 58, 237, 0.08);
-            --border: rgba(15, 23, 42, 0.1);
-            --text: #0f172a;
-            --text-muted: #475569;
+            --card-bg: rgba(241, 245, 249, 0.9);
+            --glass: rgba(109, 40, 217, 0.12);
+            --border: rgba(15, 23, 42, 0.16);
+            --text: #111827;
+            --text-muted: #4b5563;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            background: linear-gradient(135deg, #e9eef9 0%, #f0f4fb 50%, #e8edf5 100%);
             color: var(--text);
             overflow-x: hidden;
             min-height: 100vh;
@@ -45,10 +45,10 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,58,237,0.14) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(8,145,178,0.12) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 60%),
-                linear-gradient(135deg, #f8fafc 0%, #fdfefe 50%, #eef2ff 100%);
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(109,40,217,0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(15,118,110,0.14) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(217,119,6,0.11) 0%, transparent 60%),
+                linear-gradient(135deg, #e9eef9 0%, #f3f6fc 50%, #e8edf5 100%);
             z-index: -2;
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
@@ -104,7 +104,7 @@
             justify-content: space-between;
             padding: 0 2.5rem;
             height: 70px;
-            background: rgba(255,255,255,0.85);
+            background: rgba(234, 240, 247, 0.84);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
@@ -295,7 +295,7 @@
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             position: relative;
@@ -376,7 +376,7 @@
 
         /* ── Community Banner Grid Systems ── */
         .community-card {
-            background: var(--card-bg);
+            background: rgba(248, 250, 252, 0.9);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 3rem 2.5rem;
@@ -393,6 +393,209 @@
         .community-content { flex: 1; min-width: 200px; }
         .community-content h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
 
+        /* ── Workstations Page ── */
+        .workstations-page { padding-top: 1rem; }
+
+        .workstation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .workstation-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,250,252,0.92));
+            border: 1px solid rgba(124,58,237,0.16);
+            border-radius: 22px;
+            padding: 1.35rem 1.25rem;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .workstation-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+        }
+
+        .workstation-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(124,58,237,0.08), transparent 55%, rgba(8,145,178,0.08));
+            pointer-events: none;
+        }
+
+        .workstation-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.45rem;
+        }
+
+        .workstation-version {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.38rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(124,58,237,0.08);
+            color: var(--primary-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .workstation-meta {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ── Timeline Page ── */
+        .timeline-page { padding-top: 1rem; }
+
+        .timeline-hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .timeline-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .stat-pill {
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.75);
+            border: 1px solid rgba(124,58,237,0.18);
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+        }
+
+        .timeline-shell {
+            position: relative;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 1rem 0 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, rgba(124,58,237,0.65), rgba(8,145,178,0.45));
+            box-shadow: 0 0 24px rgba(124,58,237,0.18);
+        }
+
+        .timeline-events {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .timeline-event {
+            display: grid;
+            grid-template-columns: 1fr 46px 1fr;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(244,247,255,0.92));
+            border: 1px solid rgba(109,40,217,0.16);
+            border-radius: 20px;
+            padding: 1.2rem 1.25rem;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(124,58,237,0.08), transparent 60%, rgba(8,145,178,0.08));
+            pointer-events: none;
+        }
+
+        .timeline-event:nth-child(odd) .timeline-card {
+            margin-right: auto;
+        }
+
+        .timeline-event:nth-child(even) .timeline-card {
+            margin-left: auto;
+        }
+
+        .timeline-marker {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            box-shadow: 0 10px 24px rgba(124,58,237,0.25);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 0.45rem;
+        }
+
+        .timeline-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-note {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .timeline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(124,58,237,0.08);
+            color: var(--primary-light);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
         /* ── Structural Layout Separators ── */
         .divider {
             height: 1px;
@@ -406,7 +609,7 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
-            background: rgba(255,255,255,0.8);
+            background: rgba(234, 240, 247, 0.86);
             backdrop-filter: blur(10px);
             margin-top: 2rem;
         }
@@ -437,11 +640,13 @@
                 <span class="nav-logo-text">MANEX</span>
             </div>
             <ul class="nav-links">
-                <li><a class="nav-item active" onclick="switchPage('home', this)">Home</a></li>
-                <li><a class="nav-item" onclick="switchPage('projects', this)">Projects</a></li>
-                <li><a class="nav-item" onclick="switchPage('team', this)">Team</a></li>
-                <li><a class="nav-item" onclick="switchPage('community', this)">Community</a></li>
-                <li><a class="nav-item" onclick="switchPage('download', this)">Download</a></li>
+                <li><a class="nav-item active" data-page="home" onclick="switchPage('home', this)">Home</a></li>
+                <li><a class="nav-item" data-page="projects" onclick="switchPage('projects', this)">Projects</a></li>
+                <li><a class="nav-item" data-page="workstations" onclick="switchPage('workstations', this)">Workstations</a></li>
+                <li><a class="nav-item" data-page="team" onclick="switchPage('team', this)">Team</a></li>
+                <li><a class="nav-item" data-page="timeline" onclick="switchPage('timeline', this)">Timeline</a></li>
+                <li><a class="nav-item" data-page="community" onclick="switchPage('community', this)">Community</a></li>
+                <li><a class="nav-item" data-page="download" onclick="switchPage('download', this)">Download</a></li>
             </ul>
         </nav>
     </header>
@@ -523,7 +728,7 @@
                     <span class="card-icon">🖥️</span>
                     <h3>Workstations</h3>
                     <p>Simple development workstations with a lightweight setup and a few practical tools for coding.</p>
-                    <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" onclick="switchPage('workstations', document.querySelector('[data-page=\"workstations\"]')); return false;" class="btn-learn">View Workstations <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="card">
                     <span class="card-icon">✨</span>
@@ -558,7 +763,7 @@
                 <div class="card" style="text-align: center;">
                     <div class="avatar avatar-akshaj">AK</div>
                     <h3>Akshaj Kulkarni</h3>
-                    <div class="team-role">Co-founder · Lead Developer · President</div>
+                    <div class="team-role">Co-founder · Developer · President</div>
                     <p>A developer focused on building simple apps and keeping the work moving.</p>
                     <a href="mailto:akshaj.k32411@outlook.com" class="team-email"><i class="fas fa-envelope"></i> akshaj.k32411@outlook.com</a>
                 </div>
@@ -583,6 +788,35 @@
                     <p>We are open to working with others who want to help build small apps and tools.</p>
                     <a href="mailto:akshaj.k32411@outlook.com" class="btn-primary" style="margin-top:0.5rem; font-size:0.9rem; padding:0.7rem 1.6rem;">Get in Touch</a>
                 </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="workstations" class="page-container">
+        <section class="workstations-page">
+            <div class="section-label">Product Line</div>
+            <h2 class="section-title">Workstations</h2>
+            <p class="section-sub">A complete list of the MANEX workstation releases and versions. Main, as in the most important and big workstations are: 1. Languages, 2. Woodz M14, 3. Woodz M15, 4. Tabs 16(After the fall), 5. Tabs 395, 6. Tabs 23</p>
+            <div id="workstations-list" class="workstation-grid"></div>
+        </section>
+    </div>
+
+    <div id="timeline" class="page-container">
+        <section class="timeline-page">
+            <div class="timeline-hero">
+                <div class="section-label">Chronicle</div>
+                <h2 class="section-title">MANEX Timeline</h2>
+                <p class="section-sub">A vivid look at the milestones, releases, transitions, and turning points that shaped MANEX over the years.</p>
+                <div class="timeline-stats">
+                    <span class="stat-pill">New nomenclature</span>
+                    <span class="stat-pill">Workstation updates</span>
+                    <span class="stat-pill">Community shifts</span>
+                </div>
+            </div>
+
+            <div class="timeline-shell">
+                <div class="timeline-line"></div>
+                <div id="timeline-events" class="timeline-events"></div>
             </div>
         </section>
     </div>
@@ -630,6 +864,107 @@
     </footer>
 
     <script>
+        const workstationList = [
+            { name: 'Sodium v26', version: '26.0.0', meta: 'Latest workstation release' },
+            { name: 'Sodium v25', version: '25.0.0', meta: 'Earlier major Sodium release' },
+            { name: 'Woodz M17', version: '23.1.0', meta: 'Modern workstation build' },
+            { name: 'Tabs 23', version: '23.0.2', meta: 'Stable Tabs-based release' },
+            { name: 'MANEX Tabs Solaris Pro', version: '22.0.1', build: '1.5', meta: 'Premium Solaris Pro workstation' },
+            { name: 'MANEX Tabs Arcline', version: '21', meta: 'Arcline edition' },
+            { name: 'MANEX Tabs 21', version: '20', meta: 'Advanced workstation release' },
+            { name: 'MANEX Tabs 395', version: '19.0.2', meta: 'High-version Tabs release' },
+            { name: 'MANEX Tabs 20', version: '18', meta: 'Earlier major Tabs release' },
+            { name: 'MANEX Tabs 19', version: '17', meta: 'Legacy Tabs release' },
+            { name: 'MANEX Tabs 16', version: '16', meta: 'Foundational Tabs release' },
+            { name: 'MANEX Woodz M15', version: '15', meta: 'Woodz-based workstation' },
+            { name: 'MA2P Woodz M14', version: '14', meta: 'Full release milestone' },
+            { name: 'MA2P Woodz M14 Beta', version: '13.9', meta: 'Beta release of M14' },
+            { name: 'Version 10', version: 'Beta', meta: 'Early beta workstation build' },
+            { name: 'Version 7.1', version: '7.1', meta: 'Intermediate version branch' },
+            { name: 'Version 7', version: '7', meta: 'Older workstation release' },
+            { name: 'Version 6.9', version: '6.9', meta: 'Earlier legacy version' },
+            { name: 'Version 6.5', version: '6.5', meta: 'Older build line' },
+            { name: 'Languages', version: '1.0.0', meta: 'Language-focused release' }
+        ];
+
+        const timelineEvents = [
+            { date: '20 November 2020', title: 'MANEX is founded, Gen Old (MANEX) begins', note: 'MANEX is co-founded by two best friends, which marks the start of Gen Old.' },
+            { date: 'Mid 2021', title: 'Gen Design (MANEX) begins', note: 'The design-focused phase begins as MANEX evolves.' },
+            { date: 'Mid 2021', title: 'MA2P is renamed MANEX', note: 'The project identity shifts into the MANEX brand.' },
+            { date: 'Mid 2022', title: 'Mukund leaves MANEX after moving to IGCSE', note: 'A major change in the community begins as a key figure turns toward a new chapter.' },
+            { date: '2022', title: 'The 2022 Fall of MANEX begins', note: 'A difficult period of decline and disruption starts.' },
+            { date: '2022', title: 'Attempts to bring Mukund back to MANEX are unsuccessful', note: 'The community tries to restore a former member without success.' },
+            { date: '2022', title: 'Adithya steps down as Developer and becomes Advisor', note: 'Leadership shifts and responsibilities are redistributed.' },
+            { date: 'Mid December 2022', title: 'Rights to the Woodz name are acquired from MANEX', note: 'A key trademark and branding transition takes place.' },
+            { date: 'January 2023', title: 'MANEX releases Tabs 16, ending the 2022 Fall of MANEX', note: 'A fresh release brings the earlier decline to a close.' },
+            { date: 'March 2023', title: 'Tabs 20 is released by MANEX', note: 'The next major version lands and signals renewed momentum.' },
+            { date: '2023', title: 'The 2023 Fall of MANEX begins', note: 'A new period of instability begins.' },
+            { date: 'July 2023', title: 'MANEX releases Tabs 395, ending the 2023 Fall of MANEX', note: 'The year closes with a strong release that stabilizes the direction.' },
+            { date: 'July 2023', title: 'Gen Tech (MANEX) begins', note: 'A technological era begins with a sharper focus on innovation.' },
+            { date: '20 August 2023', title: 'Adithya steps down as Advisor of MANEX', note: 'The leadership picture changes again as Adithya exits the advisory role.' },
+            { date: '12 January 2024', title: 'MANEX launches new community in Teams', note: 'Connections and updates move to a new collaborative space.' },
+            { date: '13 June 2024', title: 'MANEX releases Tabs Solaris Pro', note: 'A premium product release expands the portfolio.' },
+            { date: '19 June 2024', title: 'Gen AI (MANEX) begins', note: 'A new AI-centered chapter opens for the organization.' },
+            { date: '19 June 2024', title: 'MANEX releases its first AI chatbot', note: 'The first AI chatbot introduction marks a milestone in the new era.' },
+            { date: '30 July 2024', title: 'MANEX releases Assistly', note: 'A new assistive product enters the ecosystem.' },
+            { date: '4 September 2024', title: 'MANEX releases Launcher', note: 'A product launch adds more utility to the platform.' },
+            { date: '16 September 2024', title: 'MANEX releases PingPro', note: 'Another release further strengthens the product lineup.' },
+            { date: 'September–October 2024', title: 'MANEX is temporarily removed from the alliance before being readmitted', note: 'The organization experiences a temporary setback before returning.' },
+            { date: '28 October 2024', title: 'ChromaBase 1 is released by MANEX', note: 'A significant new release arrives in the late 2024 period.' },
+            { date: '11 November 2024', title: 'Adithya is promoted to Advisor and Developer in MANEX', note: 'Adithya returns to an elevated role in the organization.' },
+            { date: '11 November 2024', title: 'Tabs 23 is released by MANEX', note: 'The release reinforces the continued growth of the product line.' },
+            { date: '1 December 2024', title: 'MANEX releases Surfer 2.0', note: 'A major update brings a new version of the product to the public.' },
+            { date: '21 February 2025', title: 'MANEX releases Woodz M17', note: 'A notable release arrives early in the year.' },
+            { date: 'Mid 2025', title: 'Gen Advance (MANEX) begins', note: 'The organization enters a new generation focused on progress and advancement.' },
+            { date: 'Late 2025', title: 'MANEX enters prolonged stagnation', note: 'Momentum slows and the organization faces a long period of stillness.' },
+            { date: '2025', title: 'The 2025 Fall of MANEX begins', note: 'A new period of decline begins as the organization faces fresh pressure.' },
+            { date: '8–9 January 2026', title: 'MANEX releases Sodium v25 and a new AI chatbot, Magmafox', note: 'A bold January release brings both product and AI momentum back into focus.' },
+            { date: '8–9 January 2026', title: 'Gen Develop (MANEX) begins', note: 'A development-oriented generation starts with renewed creative energy.' },
+            { date: '6–8 April 2026', title: 'Surfer 3.0 was released on 6 April by MANEX', note: 'A major update lands early in April.' },
+            { date: '6–8 April 2026', title: 'Sodium v26 and Calc 2.0 were released on 8 April by MANEX', note: 'The spring release cycle expands with two important launches.' },
+            { date: '10 April 2026', title: 'Assistly is deprecated by MANEX', note: 'A product shifts out of active support as the platform evolves.' },
+            { date: '20–22 April 2026', title: 'Quillo is released by MANEX', note: 'A new release arrives during the April wave.' },
+            { date: '20–22 April 2026', title: 'Inkspire is released by MANEX', note: 'Another significant product makes its debut.' },
+            { date: '28 April 2026', title: 'CodeForge is released by MANEX', note: 'The product lineup grows further with a new tool.' },
+            { date: '7 May 2026', title: 'Surfer 4.0 is released by MANEX', note: 'A major version update arrives in early May.' },
+            { date: '17 May 2026', title: 'Adithya is promoted to Chief Operating Officer of MANEX', note: 'Adithya takes on a leading executive role in the organization.' },
+            { date: '21–23 May 2026', title: 'MANEX releases its new website', note: 'The public identity is refreshed with a modern web experience.' },
+            { date: '21–23 May 2026', title: 'MANEX releases Taskora', note: 'A new product launch arrives alongside the updated website.' },
+            { date: '1–4 June 2026', title: 'New channels in the MANEX server', note: 'The community infrastructure expands with new spaces for collaboration.' },
+            { date: '22 July 2026', title: 'MANEX Documents are updated', note: 'The project documentation receives a fresh update and refresh.' }
+        ];
+
+        function renderWorkstations() {
+            const container = document.getElementById('workstations-list');
+            if (!container) return;
+
+            container.innerHTML = workstationList.map(item => `
+                <div class="workstation-card">
+                    <div class="workstation-version"><i class="fas fa-desktop"></i> ${item.version}</div>
+                    <div class="workstation-title">${item.name}</div>
+                    <div class="workstation-meta">${item.build ? `Build: ${item.build}` : 'Release version'} · ${item.meta}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-events');
+            if (!container) return;
+
+            container.innerHTML = timelineEvents.map((event, index) => `
+                <div class="timeline-event">
+                    <div class="timeline-card" style="${index % 2 === 0 ? 'margin-right: auto;' : 'margin-left: auto;'}">
+                        <div class="timeline-date">${event.date}</div>
+                        <div class="timeline-title">${event.title}</div>
+                        <div class="timeline-note">${event.note}</div>
+                        ${event.title.includes('Gen ') ? '<span class="timeline-badge"><i class="fas fa-sparkles"></i> Milestone</span>' : ''}
+                    </div>
+                    <div class="timeline-marker"><i class="fas fa-star"></i></div>
+                    <div></div>
+                </div>
+            `).join('');
+        }
+
         function switchPage(pageId, navElement) {
             // 1. Clear display flags
             const pages = document.querySelectorAll('.page-container');
@@ -649,12 +984,17 @@
             if (navElement && navElement.classList) {
                 navElement.classList.add('active');
             } else if (pageId) {
-                const mapRoute = { 'home': 0, 'projects': 1, 'team': 2, 'community': 3, 'download': 4 };
+                const mapRoute = { 'home': 0, 'projects': 1, 'workstations': 2, 'team': 3, 'timeline': 4, 'community': 5, 'download': 6 };
                 if(mapRoute[pageId] !== undefined) {
                     navLinks[mapRoute[pageId]].classList.add('active');
                 }
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWorkstations();
+            renderTimeline();
+        });
     </script>
 </body>
 </html>
