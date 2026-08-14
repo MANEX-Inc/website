@@ -6,36 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MANEX</title>
     
-    <link rel="icon" href="./assets/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <link rel="icon" href="assets/logo.svg">
     
     <link rel="preload" as="image" href="https://lh3.googleusercontent.com/sitesv/AA5AbUB0BTCQHgIU8T-UqEApUjCFSctL3qnjyoQPK-_LJ3rq1N23i7pagIEJgIomcH7cZdwBRv8dUCn9RiCDv9aMfqABfFSFUtT1v-I8XuhDrggTM_zWqH_s308A-P1iPtRNU2GtFA57BlcFygbWprvgRlIQZ9AqRH8f-yUd7XXPeWCK3f2KifuGCdKX=w128">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,700&family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
     
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --primary: #6d28d9;
-            --primary-light: #7c3aed;
-            --accent: #0f766e;
-            --accent2: #d97706;
-            --dark: #f3f4f6;
+            --primary: #8b1e1e; /* deep red */
+            --primary-light: #c2412d; /* warm red */
+            --accent: #992a2a; /* reddish-brown accent */
+            --accent2: #b76e3c; /* gold/rust */
+            --dark: #f7f5f3;
             --dark2: #ffffff;
-            --card-bg: rgba(241, 245, 249, 0.9);
-            --glass: rgba(109, 40, 217, 0.12);
-            --border: rgba(15, 23, 42, 0.16);
-            --text: #111827;
-            --text-muted: #4b5563;
+            --card-bg: rgba(250,247,244,0.96);
+            --glass: rgba(139,30,30,0.12);
+            --border: rgba(48,22,18,0.14);
+            --text: #2b2b2b;
+            --text-muted: #5b4b45;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e9eef9 0%, #f0f4fb 50%, #e8edf5 100%);
+            background: linear-gradient(135deg, #fbf6f2 0%, #f6efe9 50%, #f7f2ee 100%);
             color: var(--text);
             overflow-x: hidden;
             min-height: 100vh;
@@ -47,10 +48,10 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(109,40,217,0.16) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(15,118,110,0.14) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(217,119,6,0.11) 0%, transparent 60%),
-                linear-gradient(135deg, #e9eef9 0%, #f3f6fc 50%, #e8edf5 100%);
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(122,75,42,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(194,65,45,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(183,110,60,0.08) 0%, transparent 60%),
+                linear-gradient(135deg, #fbf6f2 0%, #f6efe9 50%, #f7f2ee 100%);
             z-index: -2;
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
@@ -70,9 +71,9 @@
             animation: float 18s ease-in-out infinite;
             pointer-events: none;
         }
-        .orb1 { width: 500px; height: 500px; background: #7c3aed; top: -100px; left: -100px; animation-duration: 20s; }
-        .orb2 { width: 400px; height: 400px; background: #06b6d4; bottom: -80px; right: -80px; animation-duration: 16s; animation-delay: -5s; }
-        .orb3 { width: 300px; height: 300px; background: #f59e0b; top: 40%; left: 60%; animation-duration: 22s; animation-delay: -10s; }
+        .orb1 { width: 520px; height: 520px; background: #9b2b2b; top: -120px; left: -120px; animation-duration: 20s; }
+        .orb2 { width: 420px; height: 420px; background: #d23b31; bottom: -80px; right: -80px; animation-duration: 16s; animation-delay: -5s; }
+        .orb3 { width: 320px; height: 320px; background: #c75a46; top: 42%; left: 62%; animation-duration: 22s; animation-delay: -10s; }
 
         @keyframes float {
             0%,100% { transform: translate(0,0) scale(1); }
@@ -81,16 +82,28 @@
         }
 
         /* Ambient Matrix Grid */
-        body::after {
-            content: '';
+        body::after { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(42,28,19,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(42,28,19,0.03) 1px, transparent 1px); background-size: 70px 70px; z-index: -1; pointer-events: none; }
+
+        /* Paper grain overlay (subtle texture using SVG turbulence) */
+        .paper-grain {
             position: fixed;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -1;
+            z-index: -0.9;
             pointer-events: none;
+            opacity: 0.08;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='noise'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23noise)' opacity='0.18' fill='%23b76e3c'/></svg>");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            transform: translateZ(0);
+        }
+
+        /* Reduce grain intensity for smaller screens to save visual noise */
+        @media (max-width: 768px) {
+            .paper-grain { opacity: 0.03; background-size: 300px 300px; }
+        }
+        @media (max-width: 420px) {
+            .paper-grain { display: none; }
         }
 
         /* ── Header Navigation ── */
@@ -100,18 +113,7 @@
             z-index: 1000;
         }
 
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2.5rem;
-            height: 70px;
-            background: rgba(234, 240, 247, 0.84);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            max-width: 100%;
-        }
+        nav { display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; height:70px; background: rgba(255,250,248,0.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
 
         .nav-logo {
             display: flex;
@@ -146,15 +148,11 @@
             padding: 0.4rem;
         }
 
-        .nav-logo-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a78bfa, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-        }
+        .nav-logo-text { font-size:1.4rem; font-weight:800; background: linear-gradient(135deg, var(--primary), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-0.5px; }
+
+        /* Human-made typography */
+        h1,h2,h3,h4,h5,h6 { font-family: 'Merriweather', serif; }
+        .section-label { font-family: 'Shadows Into Light', cursive; font-size:1rem; }
 
         .nav-links {
             display: flex;
@@ -174,24 +172,10 @@
             cursor: pointer;
         }
         .nav-item:hover, .nav-item.active { color: var(--text); background: var(--glass); }
-        
-        .nav-item.active {
-            background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(8,145,178,0.12));
-            border: 1px solid rgba(124,58,237,0.2);
-            font-weight: 600;
-        }
+        .nav-item.active { background: linear-gradient(135deg, rgba(194,65,45,0.12), rgba(183,110,60,0.06)); border: 1px solid rgba(194,65,45,0.22); font-weight:600; }
 
-        .btn-nav-dl {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: #fff !important;
-            border-radius: 8px;
-            padding: 0.45rem 1.2rem !important;
-            font-weight: 600 !important;
-            transition: opacity 0.2s !important;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-nav-dl:hover { opacity: 0.85; }
+        .btn-nav-dl { background: linear-gradient(135deg, var(--primary), var(--accent)); color:#fff !important; border-radius:8px; padding:0.45rem 1.2rem !important; font-weight:600 !important; transition: opacity 0.2s !important; border:none; cursor:pointer; }
+        .btn-nav-dl:hover { opacity:0.9; }
 
         /* ── Page Routing Profiles ── */
         .page-container {
@@ -224,17 +208,7 @@
             position: relative;
         }
 
-        .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.08;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #0f172a 20%, #7c3aed 60%, #0891b2 90%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .hero h1 { font-size: clamp(2.8rem,7vw,5.5rem); font-weight:900; line-height:1.08; letter-spacing:-2px; margin-bottom:1.5rem; background: linear-gradient(135deg, #2b1f1b 10%, var(--primary) 60%, var(--primary-light) 95%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
         .hero p {
             font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -246,59 +220,34 @@
 
         .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #5b21b6);
-            color: #fff;
-            padding: 0.85rem 2.2rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 24px rgba(124,58,237,0.35);
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,58,237,0.5); }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color:#fff; padding:0.85rem 2.2rem; border-radius:14px; font-size:1rem; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition: transform 0.18s, box-shadow 0.18s; box-shadow: 0 8px 30px rgba(194,65,45,0.28), 0 1px 0 rgba(255,255,255,0.06) inset; display:inline-flex; align-items:center; gap:0.5rem; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(194,65,45,0.38); }
+        .btn-primary:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(0,0,0,0.12) inset; }
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.8);
-            color: var(--text);
-            padding: 0.85rem 2.2rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.2s;
-            backdrop-filter: blur(10px);
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+        .btn-secondary { background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,247,244,0.95)); color: var(--text); padding: 0.85rem 2.2rem; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: all 0.18s; backdrop-filter: blur(8px); display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 3px 10px rgba(42,28,19,0.04); }
+        .btn-secondary:hover { background: rgba(194,65,45,0.04); transform: translateY(-2px); }
+        .btn-secondary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(0,0,0,0.06) inset; }
 
         /* ── Standard Section Containers ── */
-        section { padding: 5rem 2rem 2rem 2rem; max-width: 1200px; margin: 0 auto; }
-        
-        .section-label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--primary-light);
-            margin-bottom: 0.75rem;
-            text-align: center;
+        section { padding: 5rem 2rem 2rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; }
+        /* subtle paper edge / scrapbook shadow */
+        section::after {
+            content: '';
+            position: absolute;
+            left: 8px; right: 8px; bottom: -16px;
+            height: 16px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(15,23,42,0.06), rgba(15,23,42,0.12));
+            filter: blur(10px);
+            opacity: 0.55;
+            pointer-events: none;
         }
+        section { box-shadow: 0 12px 30px rgba(42,28,19,0.06); border-radius: 14px; }
         
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-            color: var(--text);
-            text-align: center;
-        }
+        .section-label { font-size:0.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color: var(--accent); margin-bottom:0.75rem; text-align:center; }
+        
+        .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight:800; letter-spacing:-1px; margin-bottom:1rem; color: var(--text); text-align:center; position:relative; }
+        .section-title:after { content: ''; display:block; width:68px; height:8px; margin:10px auto 0; background: linear-gradient(90deg, var(--primary), var(--accent2)); border-radius:6px; opacity:0.95; }
         
         .section-sub {
             color: var(--text-muted);
@@ -317,20 +266,9 @@
             gap: 1.5rem;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover { transform: translateY(-6px); border-color: rgba(124,58,237,0.25); box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08); }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.2rem 1.8rem; box-shadow: 0 10px 28px rgba(42,28,19,0.06), 0 1px 0 rgba(255,255,255,0.04) inset; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s; position: relative; overflow: hidden; display:flex; flex-direction:column; }
+        .card:hover { transform: translateY(-6px); border-color: rgba(194,65,45,0.28); box-shadow: 0 20px 60px rgba(42,28,19,0.08); }
+        .card::before { content: ''; position: absolute; left: 14px; top: 18px; bottom: 18px; width: 4px; background: linear-gradient(180deg, rgba(139,30,30,0.18), rgba(183,110,60,0.12)); border-radius:6px; opacity:0.9; }
 
         .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; display: block; }
         .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
@@ -367,9 +305,9 @@
             border: 3px solid rgba(255,255,255,0.15);
         }
 
-        .avatar-akshaj { background: linear-gradient(135deg, #7c3aed, #4f46e5, #06b6d4); }
-        .avatar-adithya { background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899); }
-        .avatar-onebyte { background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6); }
+        .avatar-akshaj { background: linear-gradient(135deg, #8b1e1e, #7a4b2a); }
+        .avatar-adithya { background: linear-gradient(135deg, #c2412d, #b76e3c); }
+        .avatar-onebyte { background: linear-gradient(135deg, #b76e3c, #7a4b2a); }
 
         .avatar::after {
             content: '';
@@ -382,40 +320,15 @@
             z-index: -1;
         }
 
-        .team-role { 
-            font-size: 0.82rem; 
-            color: var(--primary-light); 
-            font-weight: 600; 
-            margin-bottom: 0.75rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-        }
-        .team-email { font-size: 0.82rem; color: var(--accent); text-decoration: none; display: inline-block; margin-top: 0.5rem;}
+        .team-role { font-size:0.82rem; color: var(--accent); font-weight:600; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.5px; }
+        .team-email { font-size:0.82rem; color: var(--accent2); text-decoration:none; display:inline-block; margin-top:0.5rem; }
         .team-email:hover { text-decoration: underline; }
 
-        .join-card {
-            border: 1px dashed rgba(124,58,237,0.4);
-            background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1));
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-        }
+        .join-card { border: 1px dashed rgba(139,30,30,0.28); background: linear-gradient(135deg, rgba(194,65,45,0.08), rgba(183,110,60,0.06)); text-align:center; align-items:center; justify-content:center; }
 
         /* ── Community Banner Grid Systems ── */
-        .community-card {
-            background: rgba(248, 250, 252, 0.9);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 3rem 2.5rem;
-            backdrop-filter: blur(12px);
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
-        .community-card:hover { border-color: rgba(124,58,237,0.35); }
+        .community-card { background: rgba(255,254,251,0.95); border:1px solid var(--border); border-radius:24px; padding:3rem 2.5rem; backdrop-filter: blur(12px); display:flex; align-items:center; gap:2.5rem; flex-wrap:wrap; margin-bottom:1rem; transition: all 0.3s; }
+        .community-card:hover { border-color: rgba(139,30,30,0.18); }
         .community-icon { font-size: 3.5rem; flex-shrink: 0; }
         .community-content { flex: 1; min-width: 200px; }
         .community-content h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
@@ -431,30 +344,9 @@
             margin: 0 auto;
         }
 
-        .workstation-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,250,252,0.92));
-            border: 1px solid rgba(124,58,237,0.16);
-            border-radius: 22px;
-            padding: 1.35rem 1.25rem;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .workstation-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
-        }
-
-        .workstation-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, rgba(124,58,237,0.08), transparent 55%, rgba(8,145,178,0.08));
-            pointer-events: none;
-        }
+        .workstation-card { background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,247,244,0.94)); border:1px solid rgba(139,30,30,0.08); border-radius:22px; padding:1.35rem 1.25rem; box-shadow:0 12px 30px rgba(42,28,19,0.05); backdrop-filter: blur(12px); position:relative; overflow:hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .workstation-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(42,28,19,0.08); }
+        .workstation-card::before { content: ''; position:absolute; inset:0; background: linear-gradient(120deg, rgba(139,30,30,0.06), transparent 55%, rgba(183,110,60,0.04)); pointer-events:none; }
 
         .workstation-title {
             font-size: 1.05rem;
@@ -463,20 +355,7 @@
             margin-bottom: 0.45rem;
         }
 
-        .workstation-version {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.38rem 0.7rem;
-            border-radius: 999px;
-            background: rgba(124,58,237,0.08);
-            color: var(--primary-light);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
-        }
+        .workstation-version { display:inline-flex; align-items:center; gap:0.35rem; padding:0.38rem 0.7rem; border-radius:999px; background: rgba(139,30,30,0.06); color: var(--primary-light); font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem; }
 
         .workstation-meta {
             font-size: 0.92rem;
@@ -501,16 +380,7 @@
             margin-top: 1rem;
         }
 
-        .stat-pill {
-            padding: 0.7rem 1rem;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.75);
-            border: 1px solid rgba(124,58,237,0.18);
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            font-weight: 600;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
-        }
+        .stat-pill { padding:0.7rem 1rem; border-radius:999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(194,65,45,0.12); color: var(--text-muted); font-size:0.92rem; font-weight:600; box-shadow:0 8px 24px rgba(42,28,19,0.03); }
 
         .timeline-shell {
             position: relative;
@@ -519,16 +389,7 @@
             padding: 1rem 0 2rem;
         }
 
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            transform: translateX(-50%);
-            background: linear-gradient(180deg, rgba(124,58,237,0.65), rgba(8,145,178,0.45));
-            box-shadow: 0 0 24px rgba(124,58,237,0.18);
-        }
+        .timeline-line { position:absolute; left:50%; top:0; bottom:0; width:2px; transform: translateX(-50%); background: linear-gradient(180deg, rgba(139,30,30,0.65), rgba(122,75,42,0.45)); box-shadow:0 0 24px rgba(139,30,30,0.12); }
 
         .timeline-events {
             position: relative;
@@ -545,24 +406,8 @@
             position: relative;
         }
 
-        .timeline-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(244,247,255,0.92));
-            border: 1px solid rgba(109,40,217,0.16);
-            border-radius: 20px;
-            padding: 1.2rem 1.25rem;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, rgba(124,58,237,0.08), transparent 60%, rgba(8,145,178,0.08));
-            pointer-events: none;
-        }
+        .timeline-card { background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(250,247,244,0.94)); border:1px solid rgba(139,30,30,0.06); border-radius:20px; padding:1.2rem 1.25rem; box-shadow:0 12px 30px rgba(42,28,19,0.05); backdrop-filter: blur(12px); position:relative; overflow:hidden; }
+        .timeline-card::before { content: ''; position:absolute; inset:0; background: linear-gradient(120deg, rgba(139,30,30,0.06), transparent 60%, rgba(183,110,60,0.04)); pointer-events:none; }
 
         .timeline-event:nth-child(odd) .timeline-card {
             margin-right: auto;
@@ -572,19 +417,7 @@
             margin-left: auto;
         }
 
-        .timeline-marker {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            display: grid;
-            place-items: center;
-            font-weight: 800;
-            box-shadow: 0 10px 24px rgba(124,58,237,0.25);
-            position: relative;
-            z-index: 2;
-        }
+        .timeline-marker { width:46px; height:46px; border-radius:50%; background: linear-gradient(135deg, var(--primary), var(--accent)); color:white; display:grid; place-items:center; font-weight:800; box-shadow:0 12px 28px rgba(194,65,45,0.28); position:relative; z-index:2; }
 
         .timeline-date {
             font-size: 0.8rem;
@@ -595,64 +428,30 @@
             margin-bottom: 0.45rem;
         }
 
-        .timeline-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-note {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .timeline-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-            padding: 0.35rem 0.65rem;
-            border-radius: 999px;
-            background: rgba(124,58,237,0.08);
-            color: var(--primary-light);
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
+        .timeline-badge { display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.8rem; padding:0.35rem 0.65rem; border-radius:999px; background: rgba(194,65,45,0.06); color: var(--primary-light); font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; }
 
         /* ── Structural Layout Separators ── */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 0 2rem;
-        }
+        .divider { height: 72px; display:flex; align-items:center; justify-content:center; margin: 0 0; }
+        .divider svg.wavy { width: 100%; height: 72px; display:block; }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 1.5rem 2rem 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            background: rgba(234, 240, 247, 0.86);
-            backdrop-filter: blur(10px);
-            margin-top: 2rem;
-        }
+        /* Discord embed and fallback */
+        .discord-embed { position: relative; width: 350px; max-width: 94vw; }
+        .discord-embed iframe { width: 100%; height: 500px; border: none; border-radius: 12px; box-shadow: 0 12px 30px rgba(42,28,19,0.08); }
+        .discord-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(250,247,244,0.9), rgba(245,240,236,0.95)); border-radius: 12px; }
+        .discord-fallback .btn-primary { box-shadow: 0 8px 24px rgba(139,30,30,0.18); }
+
+        /* Small join column above footer */
+        .join-discord-footer { display:flex; gap:1rem; align-items:center; justify-content:center; padding: 1rem 2rem; border-top:1px dashed var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,247,244,0.94)); }
+        .join-discord-footer p { margin:0; color: var(--text-muted); }
+
+        footer { border-top:1px solid var(--border); padding:1.5rem 2rem 2rem; text-align:center; color: var(--text-muted); font-size:0.9rem; background: rgba(255,250,248,0.86); backdrop-filter: blur(10px); margin-top:2rem; }
 
         footer p {
             margin: 0;
             opacity: 0.9;
         }
 
-        @media (max-width: 768px) {
-            nav { padding: 0 1.2rem; }
-            .nav-links { display: none; }
-            section { padding: 4rem 1.2rem; }
-            .community-card { gap: 1.5rem; text-align: center; justify-content: center; }
-            .community-card a { width: 100%; }
-        }
+        @media (max-width: 768px) { nav { padding: 0 1.2rem; } .nav-links { display:none; } section { padding:4rem 1.2rem; } .community-card { gap:1.5rem; text-align:center; justify-content:center; } .community-card a { width:100%; } }
     </style>
 </head>
 <body>
@@ -660,6 +459,7 @@
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
     <div class="orb orb3"></div>
+    <div class="paper-grain" aria-hidden="true"></div>
 
     <header>
         <nav>
@@ -675,6 +475,7 @@
                 <li><a class="nav-item" data-page="timeline" onclick="switchPage('timeline', this)">Timeline</a></li>
                 <li><a class="nav-item" data-page="community" onclick="switchPage('community', this)">Community</a></li>
                 <li><a class="nav-item" data-page="download" onclick="switchPage('download', this)">Download</a></li>
+                <li><a class="nav-item" data-page="server" onclick="switchPage('server', this)">Server Status</a></li>
             </ul>
         </nav>
     </header>
@@ -688,12 +489,18 @@
             <p>MANEX builds practical desktop tools and lightweight workstations for everyday developers.</p>
             <div class="hero-btns">
                 <button class="btn-secondary" onclick="switchPage('team', document.querySelectorAll('.nav-item')[2])">
-                    <i class="fas fa-users"></i> Meet Our Team
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:middle; margin-right:6px;"><path d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zM4 20c0-2.2 3.6-4 8-4s8 1.8 8 4v1H4v-1z" fill="var(--primary)"/></svg>
+                    Meet Our Team
                 </button>
             </div>
         </section>
 
-        <div class="divider"></div>
+        <div class="divider">
+            <svg class="wavy" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 40 C300 5 600 75 900 40 C1050 20 1200 60 1200 60" fill="none" stroke="var(--primary)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></path>
+                <path d="M0 44 C300 9 600 79 900 44 C1050 24 1200 64 1200 64" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" opacity="0.9"></path>
+            </svg>
+        </div>
 
         <section>
             <div class="section-label">Milestones</div>
@@ -701,24 +508,44 @@
             <p class="section-sub">A few small milestones from our work so far.</p>
             <div class="grid">
                 <div class="card">
-                    <span class="card-icon">🚀</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2 16.5C2 16.5 6 13 9 12c1.6-.5 3.1-.5 4.6 0 3 1 7 4.5 7 4.5s-3.2 1.2-7 1.2c-3.8 0-6.6-1.2-7-1.2z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.5" opacity="0.95" />
+                            <path d="M12 2l2.2 5.1L20 8l-4 3.2L17 20l-5-2.8L7 20l1-8.8L4 8l5.8-.9L12 2z" fill="none" stroke="var(--primary)" stroke-width="0.9" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                     <h3>First Workstation</h3>
                     <p>Started with a simple workstation project and built from there.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">✨</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2 12c0 0 3-4 10-4s10 4 10 4-3 4-10 4S2 12 2 12z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6"/>
+                            <path d="M6 9c1-2 3-3 6-3s5 1 6 3" fill="none" stroke="var(--primary)" stroke-width="0.9" stroke-linecap="round"/>
+                        </svg>
+                    </span>
                     <h3>Simple UI Improvements</h3>
                     <p>Improved the look and feel of our apps with simple, cleaner UI work.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🧠</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2c2.8 0 5 2.2 5 5 0 1.2-.4 2.3-1.1 3.2C15.9 11 14.2 12 12 12s-3.9-1-3.9-1.8C7.4 9.3 7 8.2 7 7c0-2.8 2.2-5 5-5z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.5"/>
+                            <path d="M6 14c1.8-2 5-3 6-3s4.2 1 6 3c1.1 1 1.1 3 0 4-1.5 1.4-4.5 2-6 2s-4.5-.6-6-2c-1.1-1-1.1-3 0-4z" fill="none" stroke="var(--primary)" stroke-width="0.6"/>
+                        </svg>
+                    </span>
                     <h3>AI Excellence</h3>
                     <p>Created MagmaFox, a small AI project for simple conversations and help.</p>
                 </div>
             </div>
         </section>
 
-        <div class="divider"></div>
+        <div class="divider">
+            <svg class="wavy" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 40 C300 5 600 75 900 40 C1050 20 1200 60 1200 60" fill="none" stroke="var(--primary)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"></path>
+                <path d="M0 44 C300 9 600 79 900 44 C1050 24 1200 64 1200 64" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" opacity="0.9"></path>
+            </svg>
+        </div>
 
         <section>
             <div class="section-label">Why MANEX</div>
@@ -726,22 +553,43 @@
             <p class="section-sub">Built with a practical approach and steady improvements.</p>
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
                 <div class="card" style="text-align: center;">
-                    <span class="card-icon">⚡</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                            <path d="M7 12l3-3 7 7" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
                     <h3>Lightning Fast</h3>
                     <p>Works well for everyday use.</p>
                 </div>
                 <div class="card" style="text-align: center;">
-                    <span class="card-icon">🎨</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="14" rx="2" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                            <path d="M6 8h12M6 12h12" stroke="var(--primary)" stroke-width="0.9" stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3>Modern Design</h3>
                     <p>Clean and easy to use.</p>
                 </div>
                 <div class="card" style="text-align: center;">
-                    <span class="card-icon">🔒</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="var(--primary)" stroke-width="0.9" />
+                            <path d="M7 10h0" stroke="var(--accent2)" stroke-width="1.6" stroke-linecap="round" />
+                            <path d="M12 10v4" stroke="var(--primary)" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3>Secure & Reliable</h3>
                     <p>Simple and dependable.</p>
                 </div>
                 <div class="card" style="text-align: center;">
-                    <span class="card-icon">🌐</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2 12c0 0 3-6 10-6s10 6 10 6-3 6-10 6S2 12 2 12z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                            <path d="M6 12a6 6 0 0 0 12 0" fill="none" stroke="var(--primary)" stroke-width="0.9" stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3>Small Community</h3>
                     <p>A small group of people following our work.</p>
                 </div>
@@ -756,22 +604,38 @@
             <p class="section-sub">A look at the apps and tools we have built so far.</p>
             <div class="grid">
                 <div class="card">
-                    <span class="card-icon">🖥️</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="2" y="4" width="20" height="14" rx="2" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                            <path d="M7 9h10" stroke="var(--primary)" stroke-width="0.9" stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3>Workstations</h3>
                     <p>Simple development workstations with a lightweight setup and a few practical tools for coding.</p>
-                    <a href="#" onclick="switchPage('workstations', document.querySelector('[data-page=\"workstations\"]')); return false;" class="btn-learn">View Workstations <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" onclick="switchPage('workstations', document.querySelector('[data-page=\"workstations\"]')); return false;" class="btn-learn">View Workstations <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle; margin-left:6px;"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="card">
-                    <span class="card-icon">✨</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="12" rx="2" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                            <circle cx="8" cy="11" r="1" fill="var(--primary)" />
+                            <path d="M6 15h12" stroke="var(--primary)" stroke-width="0.8" stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3>MANEX for Desktop</h3>
                     <p>Desktop apps with a clean interface and features that are easy to use.</p>
-                    <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-learn">Learn More <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle; margin-left:6px;"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🧠</span>
+                    <span class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2c2.8 0 5 2.2 5 5 0 1.2-.4 2.3-1.1 3.2C15.9 11 14.2 12 12 12s-3.9-1-3.9-1.8C7.4 9.3 7 8.2 7 7c0-2.8 2.2-5 5-5z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.5"/>
+                            <path d="M6 14c1.8-2 5-3 6-3s4.2 1 6 3c1.1 1 1.1 3 0 4-1.5 1.4-4.5 2-6 2s-4.5-.6-6-2c-1.1-1-1.1-3 0-4z" fill="none" stroke="var(--primary)" stroke-width="0.6"/>
+                        </svg>
+                    </span>
                     <h3>MagmaFox AI</h3>
                     <p>A small AI project that can help with simple tasks and basic conversations.</p>
-                    <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-learn">Learn More <svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle; margin-left:6px;"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
             </div>
 
@@ -779,7 +643,7 @@
                 <h2>Ready to start building?</h2>
                 <p>Follow our work and see what we are building.</p>
                 <button class="btn-primary" onclick="switchPage('download', document.querySelectorAll('.nav-item')[4])">
-                    <i class="fas fa-download"></i> Download Now
+                    <svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:8px;"><path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13l7 7 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Download Now
                 </button>
             </div>
         </section>
@@ -792,16 +656,19 @@
             <p class="section-sub">The people behind MANEX.</p>
             <div class="grid">
                 <div class="card" style="text-align: center;">
-                    <div class="avatar avatar-akshaj">AK</div>
-                    <h3>Akshaj Kulkarni</h3>
+                    <div class="avatar avatar-akshaj">MF</div>
+                    <h3>Magma Fox</h3>
                     <div class="team-role">Co-founder · Developer · President</div>
                     <p>A developer focused on building simple apps and keeping the work moving.</p>
-                    <a href="mailto:akshaj.k32411@outlook.com" class="team-email"><i class="fas fa-envelope"></i> akshaj.k32411@outlook.com</a>
+                    <a href="mailto:akshaj.k32411@outlook.com" class="team-email">
+                        <svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:6px;"><path d="M3 8l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+                        akshaj.k32411@outlook.com
+                    </a>
                 </div>
 
                 <div class="card" style="text-align: center;">
-                    <div class="avatar avatar-adithya">AS</div>
-                    <h3>Adithya Shastry</h3>
+                    <div class="avatar avatar-adithya">GL</div>
+                    <h3>GraniteLynx</h3>
                     <div class="team-role">Co-founder · Tester · COO</div>
                     <p>A tester and contributor who helps keep everything practical and reliable.</p>
                 </div>
@@ -859,16 +726,44 @@
             <p class="section-sub">Stay updated on new releases and projects.</p>
 
             <div class="community-card">
-                <div class="community-icon">👥</div>
+                <div class="community-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2" y="3" width="20" height="14" rx="3" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" />
+                        <path d="M7 9h10" stroke="var(--primary)" stroke-width="1.1" stroke-linecap="round"/>
+                        <path d="M7 12h6" stroke="var(--primary)" stroke-width="1.1" stroke-linecap="round"/>
+                        <path d="M6 17l2-3h8l2 3" fill="none" stroke="var(--primary)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                        <path d="M5 6l-2 2v7" fill="none" stroke="transparent"/>
+                    </svg>
+                </div>
                 <div class="community-content">
-                    <h3>MANEX updates on Microsoft Teams</h3>
+                    <h3>MANEX updates on Discord</h3>
                     <p>Get updates about new releases, projects, and small announcements.</p>
                 </div>
-                <a href="#" onclick="alert('Workspace configuration channel pending link generation')" class="btn-primary" style="flex-shrink:0;">
-                    <i class="fab fa-microsoft"></i> Follow Updates
+                <a href="https://discord.gg/GRSvEkccnQ" target="_blank" class="btn-primary" style="flex-shrink:0; display:inline-flex; gap:0.6rem; align-items:center;">
+                    <svg width="18" height="18" viewBox="0 0 71 55" aria-hidden="true"><path d="M60.104 4.552A58.25 58.25 0 0 0 46.708.46a41.826 41.826 0 0 0-1.888 3.873C33.7 3.86 24.928 3.86 26.064 4.333 12.79.46.896 4.552.896 4.552S2.74 19.18 8.245 28.23c15.803 4.94 31.323 4.94 47.126 0 5.504-9.05 7.727-23.678 3.733-23.678z" fill="var(--primary)"/><path d="M23.5 20.5c0 2.5-1.9 4.5-4.2 4.5S15 23 15 20.5 16.9 16 19.3 16s4.2 2 4.2 4.5zm24.6 0c0 2.5-1.9 4.5-4.2 4.5s-4.1-2-4.1-4.5 1.9-4.5 4.1-4.5 4.2 2 4.2 4.5z" fill="#fff"/></svg>
+                    Join Discord
                 </a>
             </div>
             
+        </section>
+    </div>
+
+    <div id="server" class="page-container">
+        <section style="text-align:center;">
+            <div class="section-label">Server</div>
+            <h2 class="section-title">MANEX Discord Server</h2>
+            <p class="section-sub">Live server widget (dark theme).</p>
+            <div style="display:flex; justify-content:center;">
+                <div class="discord-embed">
+                    <iframe id="discord-widget" src="https://discord.com/widget?id=1489951585697271888&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    <div id="discord-fallback" class="discord-fallback" role="status" aria-hidden="true">
+                        <div style="text-align:center;">
+                            <p style="margin-bottom:0.6rem; color:var(--text-muted);">If the live widget can't load here, click to join our Discord.</p>
+                            <a class="btn-primary" href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Join Discord</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -879,14 +774,26 @@
             <p class="section-sub">Get the latest versions of our Windows apps.</p>
             
             <div class="card" style="max-width:600px; margin: 0 auto; text-align:center;">
-                <span class="card-icon"><i class="fab fa-windows" style="color: var(--accent);"></i></span>
+                <span class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z" fill="var(--accent)" stroke="var(--primary)" stroke-width="0.4"/>
+                    </svg>
+                </span>
                 <h3>MANEX Apps for Windows</h3>
                 <p style="margin-bottom: 1.5rem;">Simple apps for your Windows machine.</p>
                 <a href="https://github.com/MANEX-Inc" target="_blank" class="btn-primary" style="align-self: center;">
-                    <i class="fas fa-download"></i> Download Apps
+                    <svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:6px;"><path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13l7 7 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Download Apps
                 </a>
             </div>
         </section>
+    </div>
+
+    <div class="join-discord-footer">
+        <p>Want to chat? Join our Discord community.</p>
+        <a class="btn-primary" href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:0.6rem;">
+            <svg width="16" height="16" viewBox="0 0 71 55" aria-hidden="true"><path d="M60.104 4.552A58.25 58.25 0 0 0 46.708.46a41.826 41.826 0 0 0-1.888 3.873C33.7 3.86 24.928 3.86 26.064 4.333 12.79.46.896 4.552.896 4.552S2.74 19.18 8.245 28.23c15.803 4.94 31.323 4.94 47.126 0 5.504-9.05 7.727-23.678 3.733-23.678z" fill="var(--primary)"/><path d="M23.5 20.5c0 2.5-1.9 4.5-4.2 4.5S15 23 15 20.5 16.9 16 19.3 16s4.2 2 4.2 4.5zm24.6 0c0 2.5-1.9 4.5-4.2 4.5s-4.1-2-4.1-4.5 1.9-4.5 4.1-4.5 4.2 2 4.2 4.5z" fill="#fff"/></svg>
+            Join Discord
+        </a>
     </div>
 
     <footer>
@@ -971,7 +878,7 @@
 
             container.innerHTML = workstationList.map(item => `
                 <div class="workstation-card">
-                    <div class="workstation-version"><i class="fas fa-desktop"></i> ${item.version}</div>
+                    <div class="workstation-version"><svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:6px;"><rect x="3" y="4" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1"/></svg> ${item.version}</div>
                     <div class="workstation-title">${item.name}</div>
                     <div class="workstation-meta">${item.build ? `Build: ${item.build}` : 'Release version'} · ${item.meta}</div>
                 </div>
@@ -988,9 +895,13 @@
                         <div class="timeline-date">${event.date}</div>
                         <div class="timeline-title">${event.title}</div>
                         <div class="timeline-note">${event.note}</div>
-                        ${event.title.includes('Gen ') ? '<span class="timeline-badge"><i class="fas fa-sparkles"></i> Milestone</span>' : ''}
+                        ${event.title.includes('Gen ') ? '<span class="timeline-badge"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle; margin-right:6px;"><path d="M12 2l1.9 4 4.1.6-3 2.6.6 4.1L12 12.8 7.4 14.9l.6-4.1L5 8.2l4.1-.6L12 2z" fill="currentColor"/></svg> Milestone</span>' : ''}
                     </div>
-                    <div class="timeline-marker"><i class="fas fa-star"></i></div>
+                    <div class="timeline-marker">
+                        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M12 2.5l2.4 5.1 5.6.8-4.1 3.6.9 5.5L12 15.8 6.2 18.3l.9-5.5L3 9.2l5.6-.8L12 2.5z" fill="var(--accent2)" stroke="var(--primary)" stroke-width="0.6" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <div></div>
                 </div>
             `).join('');
@@ -1015,7 +926,7 @@
             if (navElement && navElement.classList) {
                 navElement.classList.add('active');
             } else if (pageId) {
-                const mapRoute = { 'home': 0, 'projects': 1, 'workstations': 2, 'team': 3, 'timeline': 4, 'community': 5, 'download': 6 };
+                const mapRoute = { 'home': 0, 'projects': 1, 'workstations': 2, 'team': 3, 'timeline': 4, 'community': 5, 'download': 6, 'server': 7 };
                 if(mapRoute[pageId] !== undefined) {
                     navLinks[mapRoute[pageId]].classList.add('active');
                 }
@@ -1025,7 +936,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderWorkstations();
             renderTimeline();
+            setupDiscordWidget();
         });
+
+        function setupDiscordWidget() {
+            const iframe = document.getElementById('discord-widget');
+            const fallback = document.getElementById('discord-fallback');
+            if (!iframe || !fallback) return;
+            let loaded = false;
+            const timer = setTimeout(() => {
+                if (!loaded) {
+                    fallback.style.display = 'flex';
+                    fallback.setAttribute('aria-hidden', 'false');
+                }
+            }, 2500);
+
+            iframe.addEventListener('load', () => {
+                loaded = true;
+                try { fallback.style.display = 'none'; fallback.setAttribute('aria-hidden', 'true'); } catch(e){}
+                clearTimeout(timer);
+            });
+        }
     </script>
 </body>
 </html>
