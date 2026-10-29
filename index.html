@@ -161,9 +161,9 @@
         /* ── Hero ── */
         .hero { padding: 9.5rem 0 6.5rem; }
         .hero-inner { max-width: 780px; }
-        .hero-brand { display: inline-flex; align-items: center; gap: 0.7rem; margin-bottom: 2rem; }
-        .hero-brand img { width: 40px; height: 40px; object-fit: contain; }
-        .hero-brand span { font-size: 0.95rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+        .hero-brand { display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 2.25rem; }
+        .hero-brand img { width: 72px; height: 72px; object-fit: contain; }
+        .hero-brand span { font-size: 1.75rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
         .hero h1 {
             font-size: clamp(2.6rem, 6vw, 4.25rem);
             font-weight: 800;
@@ -250,6 +250,14 @@
         }
         .card-link:hover { text-decoration: underline; }
 
+        /* ── App cards ── */
+        .app-card { gap: 0; }
+        .app-features { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+        .app-features li { font-size: 0.9rem; color: var(--ink-2); padding: 0.35rem 0 0.35rem 1.25rem; position: relative; }
+        .app-features li::before { content: ''; position: absolute; left: 0; top: 0.85rem; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+        .app-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.25rem; }
+        .app-btn { width: 100%; }
+
         /* ── Volt feature row ── */
         .volt-feature {
             display: flex;
@@ -277,6 +285,7 @@
 
         /* ── Team ── */
         .avatar {
+            object-fit: cover;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -456,17 +465,62 @@
                 <h2 class="page-title">What we build</h2>
                 <p class="page-lead">Desktop apps and AI tools designed to be simple, fast, and dependable.</p>
                 <div class="grid">
-                    <div class="card">
-                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M7 21h10"/></svg></div>
-                        <h3>MANEX for Desktop</h3>
-                        <p>Desktop apps with a clean interface and features that are easy to use.</p>
-                        <a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener" class="card-link">Get it on Microsoft Store &rarr;</a>
+                                        <div class="card app-card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg></div>
+                        <h3>Surfer X</h3>
+                        <p>A lightweight, high-performance web browser built for Windows users who want a fast, responsive browsing experience.</p>
+                        <ul class="app-features">
+                            <li>Lightweight, Python-based architecture with low resource use</li>
+                            <li>High-performance, responsive browsing</li>
+                            <li>Integrated bug fixes and lag reductions</li>
+                            <li>Optimized for Windows 10 and 11</li>
+                        </ul>
+                        <div class="app-meta">Updated October 5, 2026 · Bug fixes release</div>
+                        <a href="https://apps.microsoft.com/detail/9ncp4wxvtqsq" target="_blank" rel="noopener" class="btn btn-primary app-btn">Get on Microsoft Store</a>
+                    </div>
+                    <div class="card app-card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+                        <h3>Surfer 6</h3>
+                        <p>A fast, good-looking desktop web browser with a modern tabbed design and built-in session controls.</p>
+                        <ul class="app-features">
+                            <li>Modern horizontal tabbed interface</li>
+                            <li>Automatic URL handling in the address bar</li>
+                            <li>Session restore to reopen tabs from your last session</li>
+                            <li>Private browsing and customizable themes and search engines</li>
+                        </ul>
+                        <div class="app-meta">Updated September 26, 2026 · Design updates release</div>
+                        <a href="https://apps.microsoft.com/detail/9n2dh5jwst6z" target="_blank" rel="noopener" class="btn btn-primary app-btn">Get on Microsoft Store</a>
+                    </div>
+                    <div class="card app-card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="18" height="8" rx="1.5"/></svg></div>
+                        <h3>ContextOS</h3>
+                        <p>A local-first workspace for consolidating projects, tasks, notes, and study coursework entirely on your device.</p>
+                        <ul class="app-features">
+                            <li>Local-first: all your data stays on your device</li>
+                            <li>Integrated focus time tracking</li>
+                            <li>Project and task management</li>
+                            <li>Centralized research notes and coursework</li>
+                        </ul>
+                        <div class="app-meta">Initial release · October 19, 2026</div>
+                        <a href="https://apps.microsoft.com/detail/9p7qc5qmm44f" target="_blank" rel="noopener" class="btn btn-primary app-btn">Get on Microsoft Store</a>
                     </div>
                     <div class="card">
                         <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
                         <h3>Volt AI</h3>
                         <p>An assistant that helps with quick conversations, guidance, and everyday support.</p>
                         <a href="https://volt-manex.vercel.app" target="_blank" rel="noopener" class="card-link">Open Volt &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
+                        <h3>MANEX Inc. on Microsoft Store</h3>
+                        <p>Browse all of our apps in one place on the Microsoft Store.</p>
+                        <a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener" class="card-link">View publisher page &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6 0C6.8 3.5 5.8 3.8 5.8 3.8a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.4 10.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div>
+                        <h3>MANEX Inc. on GitHub</h3>
+                        <p>Source and project updates for our open work.</p>
+                        <a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
                     </div>
                 </div>
 
@@ -490,15 +544,15 @@
                 <p class="page-lead">A small team building practical tools, with a few partners along the way.</p>
                 <div class="grid">
                     <div class="card">
-                        <div class="avatar">MF</div>
+                        <img class="avatar" src="assets/magmafox.png" alt="Magma Fox" />
                         <h3>Magma Fox</h3>
                         <div class="team-role">Co-founder · Developer · President</div>
                         <p>A developer focused on building simple apps and keeping the work moving.</p>
                         <a href="mailto:akshaj.k32411@outlook.com" class="team-email">akshaj.k32411@outlook.com</a>
                     </div>
                     <div class="card">
-                        <div class="avatar">GL</div>
-                        <h3>GraniteLynx</h3>
+                        <img class="avatar" src="assets/diamondlynx.png" alt="DiamondLynx" />
+                        <h3>DiamondLynx</h3>
                         <div class="team-role">Co-founder · Tester · COO</div>
                         <p>A tester and contributor who helps keep everything practical and reliable.</p>
                     </div>
