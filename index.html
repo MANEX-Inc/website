@@ -308,6 +308,65 @@
         .product-shot img { width: 100%; height: auto; display: block; }
         .product-shot figcaption { padding: 0.9rem 1.25rem; font-size: 0.875rem; color: var(--muted); background: #fff; border-top: 1px solid var(--line); }
 
+        /* ── Recent releases & steps ── */
+        .release-card { padding: 1.5rem 1.6rem; }
+        .release-date { font-size: 0.75rem; font-weight: 600; color: var(--brand); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.5rem; }
+        .release-card h3 { font-size: 1.05rem; margin-bottom: 0; }
+        .steps { counter-reset: step; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+        .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
+        .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; }
+        .step h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .step p { font-size: 0.93rem; color: var(--muted); }
+
+        /* ── Expanded sections ── */
+        .band { background: #0f0f10; color: #d9d9dd; padding: 5.5rem 0; }
+        .band .eyebrow { color: #e8a27f; }
+        .band .page-title { color: #fff; }
+        .band .page-lead { color: #a3a3ab; }
+        .band .feature { border-top: 1px solid #2a2a2f; padding-top: 1.75rem; }
+        .band .feature h3 { color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .band .feature p { color: #a3a3ab; font-size: 0.95rem; }
+        .features-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+
+        .faq { max-width: 820px; margin: 3rem auto 0; display: grid; gap: 0.75rem; }
+        .faq details { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.4rem; }
+        .faq summary { cursor: pointer; font-weight: 600; color: var(--ink); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: '+'; color: var(--brand); font-size: 1.3rem; line-height: 1; }
+        .faq details[open] summary::after { content: '–'; }
+        .faq details p { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; }
+
+        .footer-cols { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 2.5rem; margin-bottom: 2.5rem; }
+        .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 1rem; font-family: inherit; }
+        .footer-col ul { list-style: none; display: grid; gap: 0.6rem; }
+        .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+        .footer-col a:hover { color: var(--ink); }
+        .footer-brand p { color: var(--muted); font-size: 0.9rem; max-width: 300px; margin-top: 0.75rem; }
+        @media (max-width: 720px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
+
+        /* ── More content ── */
+        .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 3rem 0; border-top: 1px solid var(--line); }
+        .showcase:first-of-type { border-top: none; }
+        .showcase.reverse .showcase-text { order: 2; }
+        .showcase h3 { font-size: 1.6rem; margin-bottom: 0.9rem; }
+        .showcase p { color: var(--muted); margin-bottom: 1.25rem; }
+        .showcase ul { list-style: none; display: grid; gap: 0.6rem; }
+        .showcase li { position: relative; padding-left: 1.5rem; color: var(--ink-2); font-size: 0.95rem; }
+        .showcase li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--brand); }
+        .showcase-visual { background: linear-gradient(135deg, #faf2f2, #f7f7f8); border: 1px solid var(--line); border-radius: 20px; min-height: 280px; display: grid; place-items: center; padding: 2rem; }
+        .showcase-visual svg { width: 96px; height: 96px; color: var(--brand); }
+        @media (max-width: 800px) { .showcase { grid-template-columns: 1fr; gap: 2rem; } .showcase.reverse .showcase-text { order: 0; } }
+
+        .timeline-list { max-width: 760px; margin: 0 auto; display: grid; gap: 0; border-left: 2px solid var(--line); padding-left: 2rem; }
+        .timeline-list .t-item { position: relative; padding: 0 0 2rem; }
+        .timeline-list .t-item::before { content: ''; position: absolute; left: -2.45rem; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid var(--brand); }
+        .timeline-list .t-date { font-size: 0.78rem; font-weight: 600; color: var(--brand); text-transform: uppercase; letter-spacing: 0.07em; }
+        .timeline-list .t-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 0.25rem 0 0.2rem; }
+        .timeline-list .t-note { font-size: 0.92rem; color: var(--muted); }
+
+        .story { max-width: 760px; font-size: 1.05rem; color: var(--ink-2); }
+        .story p + p { margin-top: 1.1rem; }
+
         /* ── Volt feature row ── */
         .volt-feature {
             display: flex;
@@ -502,6 +561,66 @@
             </div>
         </div>
 
+        <section class="band">
+            <div class="wrap">
+                <span class="eyebrow">Why MANEX Inc.</span>
+                <h2 class="page-title">Built for Windows, built to stay out of your way</h2>
+                <p class="page-lead">Our apps are designed around how developers and students actually work: fast to open, quiet in the background, and clear to use.</p>
+                <div class="features-row">
+                    <div class="feature">
+                        <h3>Lightweight</h3>
+                        <p>Surfer X is built with a lightweight architecture to keep resource use low.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Local-first</h3>
+                        <p>ContextOS keeps your projects, notes, and coursework on your own device.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Focused</h3>
+                        <p>Surfer 6 offers a clean tabbed interface, session restore, and private browsing.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Simple to get</h3>
+                        <p>Every app is available directly from the Microsoft Store, with automatic updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <span class="eyebrow">Recent releases</span>
+                <h2 class="page-title">What we have shipped lately</h2>
+                <p class="page-lead">A few of our latest releases, from the spring and summer of 2026.</p>
+                <div class="grid">
+                    <div class="card release-card">
+                        <div class="release-date">7 May 2026</div>
+                        <h3>Surfer 4.0</h3>
+                    </div>
+                    <div class="card release-card">
+                        <div class="release-date">21–23 May 2026</div>
+                        <h3>Taskora</h3>
+                    </div>
+                    <div class="card release-card">
+                        <div class="release-date">28 April 2026</div>
+                        <h3>CodeForge</h3>
+                    </div>
+                    <div class="card release-card">
+                        <div class="release-date">20–22 April 2026</div>
+                        <h3>Quillo</h3>
+                    </div>
+                    <div class="card release-card">
+                        <div class="release-date">20–22 April 2026</div>
+                        <h3>Inkspire</h3>
+                    </div>
+                    <div class="card release-card">
+                        <div class="release-date">6–8 April 2026</div>
+                        <h3>Sodium v26 and Calc 2.0</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section alt">
             <div class="wrap">
                 <span class="eyebrow">Volt</span>
@@ -575,6 +694,19 @@
                         <div class="app-meta">Initial release · October 19, 2026</div>
                         <a href="https://apps.microsoft.com/detail/9p7qc5qmm44f" target="_blank" rel="noopener" class="btn btn-primary app-btn">Get on Microsoft Store</a>
                     </div>
+                    <div class="card app-card">
+                        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+                        <h3>DevDen</h3>
+                        <p>A lightweight, local development workspace for creating, managing, editing, and running software projects on your device.</p>
+                        <ul class="app-features">
+                            <li>Project dashboard and multi-tab file explorer</li>
+                            <li>Multi-language code editor with syntax highlighting</li>
+                            <li>GitHub publishing via the GitHub CLI</li>
+                            <li>Customizable workspace with dark and light themes and keyboard shortcuts</li>
+                        </ul>
+                        <div class="app-meta">Initial release · September 29, 2026</div>
+                        <a href="https://apps.microsoft.com/detail/9n4m2wml2n27" target="_blank" rel="noopener" class="btn btn-primary app-btn">Get on Microsoft Store</a>
+                    </div>
                     <div class="card">
                         <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
                         <h3>Volt AI</h3>
@@ -592,6 +724,53 @@
                         <h3>MANEX Inc. on GitHub</h3>
                         <p>Source and project updates for our open work.</p>
                         <a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+
+                                <div style="margin-top:5rem;">
+                    <span class="eyebrow">Explore</span>
+                    <h2 class="page-title" style="margin-bottom:2rem;">A closer look at our apps</h2>
+
+                    <div class="showcase">
+                        <div class="showcase-text">
+                            <h3>Surfer 6</h3>
+                            <p>A fast, good-looking desktop browser with a modern tabbed design and built-in session controls.</p>
+                            <ul>
+                                <li>Modern horizontal tabbed interface</li>
+                                <li>Automatic URL handling in the address bar</li>
+                                <li>Session restore to reopen your previous tabs</li>
+                                <li>Private browsing and customizable themes and search engines</li>
+                            </ul>
+                        </div>
+                        <div class="showcase-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg></div>
+                    </div>
+
+                    <div class="showcase reverse">
+                        <div class="showcase-text">
+                            <h3>ContextOS</h3>
+                            <p>A local-first workspace for consolidating projects, tasks, notes, and study coursework, entirely on your device.</p>
+                            <ul>
+                                <li>Local-first: all user data stays on your device</li>
+                                <li>Integrated focus time tracking</li>
+                                <li>Project and task management</li>
+                                <li>Centralized research notes and coursework</li>
+                            </ul>
+                        </div>
+                        <div class="showcase-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="18" height="8" rx="1.5"/></svg></div>
+                    </div>
+
+                    <div class="showcase">
+                        <div class="showcase-text">
+                            <h3>Volt AI</h3>
+                            <p>MANEX Inc.'s AI assistant for quick answers, code help, and everyday questions.</p>
+                            <ul>
+                                <li>Reasoning and math</li>
+                                <li>Code help</li>
+                                <li>Voice support</li>
+                                <li>Helpful guidance on exploring MANEX Inc.</li>
+                            </ul>
+                        </div>
+                        <div class="showcase-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
                     </div>
                 </div>
 
@@ -613,7 +792,20 @@
                 <span class="eyebrow">About</span>
                 <h2 class="page-title">The people behind MANEX Inc.</h2>
                 <p class="page-lead">A small team building practical tools, with a few partners along the way.</p>
-                <div class="grid">
+                                <div class="story" style="margin-bottom:4rem;">
+                    <p>MANEX Inc. was founded on 20 November 2020 by two best friends who wanted to build small, useful tools that people actually enjoy using.</p>
+                    <p>Over six years, that idea has grown into a range of desktop apps and an AI assistant called Volt. Along the way we have learned that simple, dependable software matters more than feature lists, and that a small team can build things people rely on.</p>
+                </div>
+                <h2 class="subhead" style="margin-top:0;">Milestones</h2>
+                <div class="timeline-list" style="margin-bottom:4rem;">
+                    <div class="t-item"><div class="t-date">20 November 2020</div><div class="t-title">MANEX Inc. is founded</div><div class="t-note">Started by two best friends.</div></div>
+                    <div class="t-item"><div class="t-date">July 2023</div><div class="t-title">Tabs 395 released</div><div class="t-note">A strong release that set the direction for the years after.</div></div>
+                    <div class="t-item"><div class="t-date">13 June 2024</div><div class="t-title">Tabs Solaris Pro released</div><div class="t-note">A premium product added to our lineup.</div></div>
+                    <div class="t-item"><div class="t-date">19 June 2024</div><div class="t-title">Our first AI chatbot</div><div class="t-note">The start of our AI work.</div></div>
+                    <div class="t-item"><div class="t-date">January 2026</div><div class="t-title">Volt launches</div><div class="t-note">Our AI assistant, alongside the Sodium v25 release.</div></div>
+                    <div class="t-item"><div class="t-date">21–23 May 2026</div><div class="t-title">New website and Taskora</div><div class="t-note">A refreshed public presence and a new product launch.</div></div>
+                </div>
+<div class="grid">
                     <div class="card">
                         <img class="avatar" src="assets/magmafox.png" alt="Magma Fox" />
                         <h3>Magma Fox</h3>
@@ -668,7 +860,15 @@
                     <a href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
                 </div>
 
-                <div class="server-wrap">
+                                <h2 class="subhead" style="margin-top:0;">Latest updates</h2>
+                <div class="timeline-list" style="margin-bottom:4rem;">
+                    <div class="t-item"><div class="t-date">22 July 2026</div><div class="t-title">MANEX Inc. documents updated</div><div class="t-note">Refreshed project documentation.</div></div>
+                    <div class="t-item"><div class="t-date">1–4 June 2026</div><div class="t-title">New channels in our Discord server</div><div class="t-note">More spaces to collaborate and talk.</div></div>
+                    <div class="t-item"><div class="t-date">7 May 2026</div><div class="t-title">Surfer 4.0 released</div><div class="t-note">A major version update to Surfer.</div></div>
+                    <div class="t-item"><div class="t-date">6–8 April 2026</div><div class="t-title">Surfer 3.0, Sodium v26, and Calc 2.0 released</div><div class="t-note">The spring release cycle.</div></div>
+                </div>
+
+<div class="server-wrap">
                     <div class="discord-embed">
                         <iframe id="discord-widget" src="https://discord.com/widget?id=1489951585697271888&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                         <div id="discord-fallback" class="discord-fallback" role="status" aria-hidden="true">
@@ -700,6 +900,41 @@
                     </div>
                 </div>
             </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <h3>Open the Store</h3>
+                        <p>Click "Get it on Microsoft Store" on any app above. It opens the app's page in the Microsoft Store.</p>
+                    </div>
+                <div class="faq">
+                    <details>
+                        <summary>Where can I download MANEX Inc. apps?</summary>
+                        <p>Our Windows apps are available on the Microsoft Store, and the source for our open projects is on GitHub.</p>
+                    </details>
+                    <details>
+                        <summary>Do I need an account to install?</summary>
+                        <p>Installing from the Microsoft Store requires a Microsoft account, the same as any other Store app.</p>
+                    </details>
+                    <details>
+                        <summary>How do I get updates?</summary>
+                        <p>Apps installed from the Microsoft Store update automatically. You can also check for updates in the Store app at any time.</p>
+                    </details>
+                    <details>
+                        <summary>I have a question about an app.</summary>
+                        <p>Ask Volt for quick help, or join our Discord to talk with the team and other users.</p>
+                    </details>
+                </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <h3>Install</h3>
+                        <p>Select Install. The app downloads and installs automatically, with no extra setup.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <h3>Launch and update</h3>
+                        <p>Open the app from your Start menu. The Store keeps it updated for you.</p>
+                    </div>
+                </div>
         </section>
     </div>
 
@@ -707,13 +942,40 @@
 
     <footer>
         <div class="footer-inner">
-            <ul class="footer-links">
-                <li><a href="#" onclick="switchPage('download', document.querySelectorAll('.nav-item')[4]); return false;">Download</a></li>
-                <li><a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener">Microsoft Store</a></li>
-                <li><a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener">GitHub</a></li>
-                <li><a href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Discord</a></li>
-                <li><a href="https://volt-manex.vercel.app" target="_blank" rel="noopener">Volt</a></li>
-            </ul>
+            <div class="footer-cols">
+                <div class="footer-brand">
+                    <div class="hero-brand" style="margin-bottom:0;"><img src="assets/logo.png" alt="" style="width:32px;height:32px;" /><span style="font-size:1.05rem;">MANEX Inc.</span></div>
+                    <p>Practical desktop tools and developer apps for Windows.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchPage('products', document.querySelectorAll('.nav-item')[1]); return false;">All products</a></li>
+                        <li><a href="https://apps.microsoft.com/detail/9ncp4wxvtqsq" target="_blank" rel="noopener">Surfer X</a></li>
+                        <li><a href="https://apps.microsoft.com/detail/9n2dh5jwst6z" target="_blank" rel="noopener">Surfer 6</a></li>
+                        <li><a href="https://apps.microsoft.com/detail/9p7qc5qmm44f" target="_blank" rel="noopener">ContextOS</a></li>
+                        <li><a href="https://apps.microsoft.com/detail/9n4m2wml2n27" target="_blank" rel="noopener">DevDen</a></li>
+                        <li><a href="https://volt-manex.vercel.app" target="_blank" rel="noopener">Volt AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchPage('about', document.querySelectorAll('.nav-item')[2]); return false;">About</a></li>
+                        <li><a href="#" onclick="switchPage('community', document.querySelectorAll('.nav-item')[3]); return false;">Community</a></li>
+                        <li><a href="mailto:akshaj.k32411@outlook.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchPage('download', document.querySelectorAll('.nav-item')[4]); return false;">Download</a></li>
+                        <li><a href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Discord</a></li>
+                        <li><a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener">Microsoft Store</a></li>
+                    </ul>
+                </div>
+            </div>
             <p>© 2026 MANEX Inc. All rights reserved.</p>
             <p>Found an issue or bug on this website? Email <a href="mailto:akshaj.k32411@outlook.com" class="team-email">akshaj.k32411@outlook.com</a>.</p>
         </div>
