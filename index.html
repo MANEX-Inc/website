@@ -12,16 +12,16 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://manextech.s.gy/" />
     <link rel="canonical" href="https://manextech.s.gy/" />
-    
-    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-    <link rel="icon" href="assets/logo.svg">
-    
+
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="icon" href="assets/logo.png">
+
     <link rel="preload" as="image" href="https://lh3.googleusercontent.com/sitesv/AA5AbUB0BTCQHgIU8T-UqEApUjCFSctL3qnjyoQPK-_LJ3rq1N23i7pagIEJgIomcH7cZdwBRv8dUCn9RiCDv9aMfqABfFSFUtT1v-I8XuhDrggTM_zWqH_s308A-P1iPtRNU2GtFA57BlcFygbWprvgRlIQZ9AqRH8f-yUd7XXPeWCK3f2KifuGCdKX=w128">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,700&family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-    
+
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -250,12 +250,12 @@
             pointer-events: none;
         }
         section { box-shadow: 0 12px 30px rgba(42,28,19,0.06); border-radius: 14px; }
-        
+
         .section-label { font-size:0.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color: var(--accent); margin-bottom:0.75rem; text-align:center; }
-        
+
         .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight:800; letter-spacing:-1px; margin-bottom:1rem; color: var(--text); text-align:center; position:relative; }
         .section-title:after { content: ''; display:block; width:68px; height:8px; margin:10px auto 0; background: linear-gradient(90deg, var(--primary), var(--accent2)); border-radius:6px; opacity:0.95; }
-        
+
         .section-sub {
             color: var(--text-muted);
             font-size: 1.05rem;
@@ -504,6 +504,122 @@
             .volt-card .btn-primary { width:100%; justify-content:center; }
             .btn-row a { width:100%; }
         }
+
+        /* ── 6th Anniversary Banner ── */
+        .anniv-section { padding-top: 2rem; padding-bottom: 0; box-shadow: none; }
+        .anniv-banner {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.75rem;
+            flex-wrap: wrap;
+            padding: 2.4rem 2.6rem;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #8b1e1e 0%, #992a2a 45%, #b76e3c 100%);
+            color: #fff;
+            box-shadow: 0 20px 50px rgba(139,30,30,0.28);
+        }
+        .anniv-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 85% 15%, rgba(255,255,255,0.22), transparent 45%),
+                        radial-gradient(circle at 10% 90%, rgba(255,255,255,0.12), transparent 40%);
+            pointer-events: none;
+        }
+        .anniv-text { position: relative; flex: 1; min-width: 240px; }
+        .anniv-kicker {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 0.9rem;
+        }
+        .anniv-banner h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+            color: #fff;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+        .anniv-banner p {
+            color: rgba(255,255,255,0.92);
+            line-height: 1.7;
+            margin: 0 0 1.4rem;
+            max-width: 560px;
+        }
+        .anniv-banner .btn-primary {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        }
+        .anniv-badge {
+            position: relative;
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            background: rgba(255,255,255,0.14);
+            border: 2px solid rgba(255,255,255,0.35);
+            box-shadow: 0 0 0 10px rgba(255,255,255,0.06), 0 0 40px rgba(255,255,255,0.18);
+            animation: annivGlow 4s ease-in-out infinite;
+        }
+        .anniv-badge .num {
+            font-family: 'Merriweather', serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .anniv-badge .lbl {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+        .anniv-spark {
+            position: absolute;
+            color: #fff;
+            font-size: 1rem;
+            opacity: 0.8;
+            animation: twinkle 2.8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .anniv-spark.s1 { top: 14px; left: 48%; }
+        .anniv-spark.s2 { bottom: 18px; right: 40%; animation-delay: -1.2s; }
+        .anniv-spark.s3 { top: 45%; right: 8px; animation-delay: -0.6s; }
+
+        @keyframes annivGlow {
+            0%, 100% { box-shadow: 0 0 0 10px rgba(255,255,255,0.06), 0 0 30px rgba(255,255,255,0.14); }
+            50%      { box-shadow: 0 0 0 14px rgba(255,255,255,0.08), 0 0 56px rgba(255,255,255,0.28); }
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.25; transform: scale(0.85); }
+            50%      { opacity: 1;    transform: scale(1.15); }
+        }
+
+        /* Six years highlights */
+        .anniv-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; max-width: 1000px; margin: 2rem auto 0; }
+        .anniv-highlights .card { text-align: center; }
+        .anniv-highlights .card-icon { margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 600px) {
+            .anniv-banner { padding: 1.8rem 1.4rem; text-align: center; justify-content: center; }
+            .anniv-banner p { margin-left: auto; margin-right: auto; }
+            .anniv-banner .btn-primary { width: 100%; justify-content: center; }
+            .anniv-badge { margin: 0 auto; width: 110px; height: 110px; }
+            .anniv-spark { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -516,7 +632,7 @@
     <header>
         <nav>
             <div class="nav-logo" onclick="switchPage('home', document.querySelectorAll('.nav-item')[0])">
-                <img src="assets/logo.svg" alt="MANEX logo" />
+                <img src="assets/logo.png" alt="MANEX logo" />
                 <span class="nav-logo-text">MANEX</span>
             </div>
             <ul class="nav-links">
@@ -536,7 +652,7 @@
     <div id="home" class="page-container active">
         <section class="hero">
             <div class="hero-title">
-                <img class="hero-logo" src="assets/logo.svg" alt="MANEX logo" />
+                <img class="hero-logo" src="assets/logo.png" alt="MANEX logo" />
                 <h1>MANEX</h1>
             </div>
             <p>MANEX builds practical desktop tools and lightweight workstations for everyday developers.</p>
@@ -547,6 +663,26 @@
                 </button>
                 <button class="btn-primary" onclick="switchPage('download', document.querySelectorAll('.nav-item')[7])">Download Apps</button>
                 <a class="btn-secondary" href="https://volt-manex.vercel.app" target="_blank" rel="noopener">Chat with Volt</a>
+            </div>
+        </section>
+
+        <section class="anniv-section">
+            <div class="anniv-banner">
+                <span class="anniv-spark s1" aria-hidden="true">✦</span>
+                <span class="anniv-spark s2" aria-hidden="true">✦</span>
+                <span class="anniv-spark s3" aria-hidden="true">✦</span>
+                <div class="anniv-text">
+                    <span class="anniv-kicker">Celebrating 6 Years</span>
+                    <h2>Happy 6th Anniversary, MANEX!</h2>
+                    <p>Six years ago, two best friends started something small. Today it has grown into desktop tools, lightweight workstations, and Volt, our AI assistant. Thank you to everyone who has built, tested, and followed along with us. This is just the next chapter.</p>
+                    <a class="btn-primary" href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Celebrate with us on Discord</a>
+                </div>
+                <div class="anniv-badge" aria-label="Six years">
+                    <div>
+                        <span class="num">6</span>
+                        <span class="lbl">Years</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -818,7 +954,7 @@
                     Join Discord
                 </a>
             </div>
-            
+
         </section>
     </div>
 
@@ -867,7 +1003,7 @@
             <div class="section-label">Get It Now</div>
             <h2 class="section-title">Download MANEX Apps</h2>
             <p class="section-sub">Get the latest versions of our Windows apps.</p>
-            
+
             <div class="card" style="max-width:600px; margin: 0 auto; text-align:center;">
                 <span class="card-icon">
                     <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
@@ -876,7 +1012,7 @@
                 </span>
                 <h3>MANEX Apps for Windows</h3>
                 <p style="margin-bottom: 1.5rem;">Simple apps for your Windows machine.</p>
-                                <div class="btn-row">
+                <div class="btn-row">
                     <a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener" class="btn-primary">Get it on Microsoft Store</a>
                     <a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener" class="btn-secondary">View on GitHub</a>
                 </div>
@@ -1033,7 +1169,7 @@
             // 3. Re-index highlight status variables
             const navLinks = document.querySelectorAll('.nav-item');
             navLinks.forEach(link => link.classList.remove('active'));
-            
+
             if (navElement && navElement.classList) {
                 navElement.classList.add('active');
             } else if (pageId) {
