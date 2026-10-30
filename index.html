@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MANEX Inc. | Practical desktop tools for everyday developers</title>
     <meta name="description" content="MANEX Inc. builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
-    <meta name="theme-color" content="#8b1e1e" />
+    <meta name="theme-color" content="#0d0a0a" />
     <meta property="og:title" content="MANEX Inc. | Practical desktop tools for everyday developers" />
     <meta property="og:description" content="MANEX Inc. builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
     <meta property="og:type" content="website" />
@@ -17,8 +17,7 @@
     <link rel="apple-touch-icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,97 +46,403 @@
   ]
 }
     </script>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0d0a0a;
+            --surface: #161112;
+            --surface-2: #1f1718;
+            --border: #2c2224;
+            --text: #f3ecea;
+            --muted: #a59a98;
+            --accent: #b3282a;
+            --accent-hover: #9a1f22;
+            --accent-soft: #e2574f;
+            --font: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-soft);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .wrap {
+            width: min(1120px, 100% - 3rem);
+            margin-inline: auto;
+        }
+
+        /* Navigation */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(13, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .topbar .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+            gap: 1.5rem;
+        }
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            display: inline-block;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--muted);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav-item:hover { color: var(--text); background: var(--surface); }
+        .nav-item.active { color: var(--text); }
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            margin-left: 0.5rem;
+        }
+        .nav-cta:hover { background: var(--accent-hover); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-outline { border-color: var(--border); color: var(--text); background: transparent; }
+        .btn-outline:hover { border-color: var(--muted); background: var(--surface); }
+        .btn-light { background: #fff; color: #2a0d0d; }
+        .btn-light:hover { background: #f1e7e4; }
+
+        /* Hero */
+        .hero {
+            padding: clamp(5rem, 12vw, 9rem) 0 clamp(4rem, 9vw, 6.5rem);
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+        }
+        .hero-brand img { width: 26px; height: 26px; border-radius: 6px; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            margin: 0 0 1.5rem;
+            max-width: 15ch;
+        }
+        .hero p.lede {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 52ch;
+            margin: 0 0 2.5rem;
+        }
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+        /* Sections */
+        .section { padding: clamp(4rem, 8vw, 6rem) 0; }
+        .section.alt {
+            background: var(--surface);
+            border-block: 1px solid var(--border);
+        }
+        .section-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+            margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+        }
+        .section h2 {
+            font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin: 0;
+            max-width: 20ch;
+        }
+        .section-head p {
+            color: var(--muted);
+            margin: 0;
+            max-width: 42ch;
+            justify-self: end;
+        }
+
+        /* Anniversary */
+        .anniv { padding: clamp(3rem, 6vw, 4.5rem) 0; }
+        .anniv-panel {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: clamp(2rem, 5vw, 3.5rem);
+            align-items: center;
+            padding: clamp(2rem, 4.5vw, 3rem);
+            border-radius: 16px;
+            background: linear-gradient(120deg, #3a0f10 0%, var(--surface) 70%);
+            border: 1px solid var(--border);
+        }
+        .anniv-num {
+            font-size: clamp(5rem, 11vw, 8rem);
+            font-weight: 700;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            color: #fff;
+        }
+        .anniv h2 {
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin: 0 0 0.75rem;
+        }
+        .anniv p { margin: 0 0 1.5rem; max-width: 52ch; color: var(--muted); }
+
+        /* Principles */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .principle {
+            background: var(--bg);
+            padding: 2rem 2.25rem;
+        }
+        .principle h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.45rem;
+        }
+        .principle p { margin: 0; color: var(--muted); }
+
+        /* App cards */
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem;
+        }
+        .app {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding: 1.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .app:hover { border-color: var(--accent); background: var(--surface-2); }
+        .app-name { font-size: 1.15rem; font-weight: 600; }
+        .app-desc { color: var(--muted); font-size: 0.92rem; }
+        .app-store {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--accent-soft);
+        }
+
+        /* Timeline */
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-width: 720px;
+            border-top: 1px solid var(--border);
+        }
+        .timeline li {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            align-items: baseline;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .timeline .when {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .timeline .what { font-size: 1.05rem; font-weight: 600; }
+
+        /* Volt */
+        .volt {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+        .volt h2 { margin-bottom: 0.75rem; }
+        .volt-lead { color: var(--muted); margin: 0 0 1.5rem; max-width: 48ch; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .chip {
+            padding: 0.35rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+            background: var(--bg);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-brand .hero-brand { color: var(--text); margin-bottom: 0.9rem; }
+        .footer-brand p { margin: 0; max-width: 32ch; color: var(--muted); font-size: 0.92rem; }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0 0 1rem;
+            font-weight: 600;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+        .footer-col a { text-decoration: none; color: var(--muted); font-size: 0.92rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--text); }
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding-top: 1.75rem;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+        .footer-bottom p { margin: 0; }
+        .footer-bottom a { color: var(--accent-soft); }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .section-head, .volt { grid-template-columns: 1fr; }
+            .section-head p { justify-self: start; }
+            .anniv-panel { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            .topbar .wrap { height: auto; padding: 0.75rem 0; flex-wrap: wrap; }
+            .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 0.1rem; }
+            .nav-item { padding: 0.45rem 0.6rem; font-size: 0.85rem; }
+            .nav-cta { margin-left: 0; }
+            .principles { grid-template-columns: 1fr; }
+            .timeline li { grid-template-columns: 1fr; gap: 0.25rem; }
+            .footer-top { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="topbar">
-            <a class="nav-logo" href="index.html">
-                <img src="assets/logo.png" alt="MANEX Inc. logo" />
-                <span class="nav-logo-text">MANEX Inc.</span>
-            </a>
-            <ul class="nav-links">
-                <li><a class="nav-item active" href="index.html">Home</a></li>
-                <li><a class="nav-item" href="products.html">Products</a></li>
-                <li><a class="nav-item" href="about.html">About</a></li>
-                <li><a class="nav-item" href="community.html">Community</a></li>
-                <li><a class="nav-item nav-cta" href="download.html">Download</a></li>
-            </ul>
+            <div class="wrap">
+                <a class="nav-logo" href="index.html">
+                    <img src="assets/logo.png" alt="MANEX Inc. logo" />
+                    <span>MANEX Inc.</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a class="nav-item active" href="index.html" aria-current="page">Home</a></li>
+                    <li><a class="nav-item" href="products.html">Products</a></li>
+                    <li><a class="nav-item" href="about.html">About</a></li>
+                    <li><a class="nav-item" href="community.html">Community</a></li>
+                    <li><a class="nav-item nav-cta" href="download.html">Download</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="hero">
             <div class="wrap">
-                <div class="hero-inner">
-                    <div class="hero-brand">
-                        <img src="assets/logo.png" alt="" />
-                        <span>MANEX Inc.</span>
-                    </div>
-                    <h1>Practical desktop tools for everyday developers.</h1>
-                    <p>MANEX Inc. builds lightweight desktop apps and tools that stay out of your way and help you get work done.</p>
-                    <div class="hero-btns">
-                        <a class="btn btn-primary" href="download.html">Download apps</a>
-                        <a class="btn btn-outline" href="products.html">Explore products</a>
-                    </div>
+                <div class="hero-brand">
+                    <img src="assets/logo.png" alt="" />
+                    <span>MANEX Inc.</span>
+                </div>
+                <h1>Practical desktop tools for everyday developers.</h1>
+                <p class="lede">MANEX Inc. builds lightweight desktop apps and tools that stay out of your way and help you get work done.</p>
+                <div class="hero-btns">
+                    <a class="btn btn-primary" href="download.html">Download apps</a>
+                    <a class="btn btn-outline" href="products.html">Explore products</a>
                 </div>
             </div>
         </section>
 
-        <div class="stats-strip">
-            <div class="wrap stats-grid">
-                <div class="stat">
-                    <div class="stat-value">6 years</div>
-                    <div class="stat-label">Building tools for developers</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">Windows</div>
-                    <div class="stat-label">Apps on the Microsoft Store</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">Volt</div>
-                    <div class="stat-label">Our AI assistant for everyday help</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="anniv">
+        <section class="anniv">
             <div class="wrap">
-                <div class="anniv-banner">
-                    <div class="anniv-text">
-                        <span class="anniv-kicker">Celebrating 6 years</span>
+                <div class="anniv-panel">
+                    <div class="anniv-num">6</div>
+                    <div>
                         <h2>Happy 6th anniversary, MANEX Inc.</h2>
                         <p>Six years ago, two best friends started something small. Thank you to everyone who has built, tested, and followed along with us.</p>
                         <a class="btn btn-light" href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Celebrate with us on Discord</a>
-                    </div>
-                    <div class="anniv-badge" aria-label="Six years">
-                        <span class="num">6</span>
-                        <span class="lbl">Years</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section class="band">
-            <div class="wrap">
-                <span class="eyebrow">Why MANEX Inc.</span>
-                <h2 class="page-title">Built for Windows, built to stay out of your way</h2>
-                <p class="page-lead">Our apps are designed around how developers and students actually work: fast to open, quiet in the background, and clear to use.</p>
-                <div class="features-row">
-                    <div class="feature">
-                        <h3>Lightweight</h3>
-                        <p>Surfer X is built with a lightweight architecture to keep resource use low.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Local-first</h3>
-                        <p>ContextOS keeps your projects, notes, and coursework on your own device.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Focused</h3>
-                        <p>Surfer 6 offers a clean tabbed interface, session restore, and private browsing.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Simple to get</h3>
-                        <p>Every app is available directly from the Microsoft Store, with automatic updates.</p>
                     </div>
                 </div>
             </div>
@@ -145,33 +450,26 @@
 
         <section class="section">
             <div class="wrap">
-                <span class="eyebrow">Recent releases</span>
-                <h2 class="page-title">What we have shipped lately</h2>
-                <p class="page-lead">A few of our latest releases, from the spring and summer of 2026.</p>
-                <div class="grid">
-                    <div class="card release-card">
-                        <div class="release-date">7 May 2026</div>
-                        <h3>Surfer 4.0</h3>
+                <div class="section-head">
+                    <h2>Built for Windows, built to stay out of your way</h2>
+                    <p>Our apps are designed around how developers and students actually work: fast to open, quiet in the background, and clear to use.</p>
+                </div>
+                <div class="principles">
+                    <div class="principle">
+                        <h3>Lightweight</h3>
+                        <p>Surfer X is built with a lightweight architecture to keep resource use low.</p>
                     </div>
-                    <div class="card release-card">
-                        <div class="release-date">21–23 May 2026</div>
-                        <h3>Taskora</h3>
+                    <div class="principle">
+                        <h3>Local-first</h3>
+                        <p>ContextOS keeps your projects, notes, and coursework on your own device.</p>
                     </div>
-                    <div class="card release-card">
-                        <div class="release-date">28 April 2026</div>
-                        <h3>CodeForge</h3>
+                    <div class="principle">
+                        <h3>Focused</h3>
+                        <p>Surfer 6 offers a clean tabbed interface, session restore, and private browsing.</p>
                     </div>
-                    <div class="card release-card">
-                        <div class="release-date">20–22 April 2026</div>
-                        <h3>Quillo</h3>
-                    </div>
-                    <div class="card release-card">
-                        <div class="release-date">20–22 April 2026</div>
-                        <h3>Inkspire</h3>
-                    </div>
-                    <div class="card release-card">
-                        <div class="release-date">6–8 April 2026</div>
-                        <h3>Sodium v26 and Calc 2.0</h3>
+                    <div class="principle">
+                        <h3>Simple to get</h3>
+                        <p>Every app is available directly from the Microsoft Store, with automatic updates.</p>
                     </div>
                 </div>
             </div>
@@ -179,31 +477,88 @@
 
         <section class="section alt">
             <div class="wrap">
-                <span class="eyebrow">Volt</span>
-                <h2 class="page-title">Meet Volt, our AI assistant</h2>
-                <p class="page-lead">Quick answers, code help and everyday questions, all in one place.</p>
-                <div class="volt-feature">
-                    <div>
-                        <h3>Chat with Volt</h3>
-                        <p>Ask questions, get code help and explore MANEX Inc.</p>
-                        <div class="chips">
-                            <span class="chip">Reasoning</span>
-                            <span class="chip">Code</span>
-                            <span class="chip">Math</span>
-                            <span class="chip">Voice</span>
-                        </div>
-                    </div>
-                    <a class="btn btn-primary" href="https://volt-manex.vercel.app" target="_blank" rel="noopener">Open Volt</a>
+                <div class="section-head">
+                    <h2>Our apps</h2>
+                    <p>Download any of our apps directly from the Microsoft Store.</p>
                 </div>
+                <div class="apps">
+                    <a class="app" href="https://apps.microsoft.com/detail/9ncp4wxvtqsq" target="_blank" rel="noopener">
+                        <span class="app-name">Surfer X</span>
+                        <span class="app-desc">A lightweight architecture that keeps resource use low.</span>
+                        <span class="app-store">View on Microsoft Store</span>
+                    </a>
+                    <a class="app" href="https://apps.microsoft.com/detail/9n2dh5jwst6z" target="_blank" rel="noopener">
+                        <span class="app-name">Surfer 6</span>
+                        <span class="app-desc">A tabbed interface, session restore, and private browsing.</span>
+                        <span class="app-store">View on Microsoft Store</span>
+                    </a>
+                    <a class="app" href="https://apps.microsoft.com/detail/9p7qc5qmm44f" target="_blank" rel="noopener">
+                        <span class="app-name">ContextOS</span>
+                        <span class="app-desc">Keeps your projects, notes, and coursework on your device.</span>
+                        <span class="app-store">View on Microsoft Store</span>
+                    </a>
+                    <a class="app" href="https://apps.microsoft.com/detail/9n4m2wml2n27" target="_blank" rel="noopener">
+                        <span class="app-name">DevDen</span>
+                        <span class="app-desc">Available on the Microsoft Store.</span>
+                        <span class="app-store">View on Microsoft Store</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>What we have shipped lately</h2>
+                    <p>A few of our latest releases, from the spring and summer of 2026.</p>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <span class="when">21–23 May 2026</span>
+                        <span class="what">Taskora</span>
+                    </li>
+                    <li>
+                        <span class="when">7 May 2026</span>
+                        <span class="what">Surfer 4.0</span>
+                    </li>
+                    <li>
+                        <span class="when">28 April 2026</span>
+                        <span class="what">CodeForge</span>
+                    </li>
+                    <li>
+                        <span class="when">20–22 April 2026</span>
+                        <span class="what">Quillo and Inkspire</span>
+                    </li>
+                    <li>
+                        <span class="when">6–8 April 2026</span>
+                        <span class="what">Sodium v26 and Calc 2.0</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="wrap volt">
+                <div>
+                    <h2>Meet Volt, our AI assistant</h2>
+                    <p class="volt-lead">Quick answers, code help and everyday questions, all in one place.</p>
+                    <div class="chips">
+                        <span class="chip">Reasoning</span>
+                        <span class="chip">Code</span>
+                        <span class="chip">Math</span>
+                        <span class="chip">Voice</span>
+                    </div>
+                </div>
+                <a class="btn btn-primary" href="https://volt-manex.vercel.app" target="_blank" rel="noopener">Open Volt</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-inner">
-            <div class="footer-cols">
+        <div class="wrap">
+            <div class="footer-top">
                 <div class="footer-brand">
-                    <div class="hero-brand" style="margin-bottom:0;"><img src="assets/logo.png" alt="" style="width:32px;height:32px;" /><span style="font-size:1.05rem;">MANEX Inc.</span></div>
+                    <div class="hero-brand"><img src="assets/logo.png" alt="" style="width:26px;height:26px;" /><span>MANEX Inc.</span></div>
                     <p>Practical desktop tools and developer apps for Windows.</p>
                 </div>
                 <div class="footer-col">
@@ -235,8 +590,10 @@
                     </ul>
                 </div>
             </div>
-            <p>© 2026 MANEX Inc. All rights reserved.</p>
-            <p>Found an issue or bug on this website? Email <a href="mailto:akshaj.k32411@outlook.com" class="team-email">akshaj.k32411@outlook.com</a>.</p>
+            <div class="footer-bottom">
+                <p>© 2026 MANEX Inc. All rights reserved.</p>
+                <p>Found an issue or bug on this website? Email <a href="mailto:akshaj.k32411@outlook.com">akshaj.k32411@outlook.com</a>.</p>
+            </div>
         </div>
     </footer>
 </body>
