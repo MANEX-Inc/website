@@ -104,7 +104,123 @@
             </div>
         </section>
 
-        <section class="section alt">
+          <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">For bot builders</span>
+      <h2 class="page-title">Add Cation to your bot</h2>
+      <p class="page-lead">Cation is a plain HTTP API, so any bot that can send a web request can use it. Your bot's code sends the user's message to Cation and posts the reply back.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Get a key</h3>
+          <p>Sign in above and create your free key. Save it somewhere safe, since it's shown only once.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Store the key</h3>
+          <p>Keep it in an environment variable such as <code>CATION_KEY</code> on the server that runs your bot. Never paste it into code you share.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Send messages</h3>
+          <p>Send a POST request to the endpoint below, and read the reply from <code>choices[0].message.content</code>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Endpoint</h3>
+        <p><code data-endpoint="chat"></code></p>
+        <p>Send the header <code>Authorization: Bearer YOUR_KEY</code> and a JSON body with a <code>messages</code> list. Each item has a <code>role</code> (<code>user</code> or <code>assistant</code>) and <code>content</code>.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-lang">Python (requests)</p>
+                <pre class="code-block"><code>import os
+import requests
+
+API_KEY = os.environ[&quot;CATION_KEY&quot;]  # keep the key in an environment variable
+URL = &quot;https://cation-api.YOUR-SUBDOMAIN.workers.dev/v1/chat/completions&quot;
+
+resp = requests.post(
+    URL,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {API_KEY}&quot;},
+    json={&quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello, Cation&quot;}]},
+    timeout=60,
+)
+resp.raise_for_status()
+print(resp.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;])</code></pre>
+      </div>
+
+      <div class="card">
+        <p class="card-lang">JavaScript (Node 18+, discord.js example)</p>
+                <pre class="code-block"><code>// Node 18+ (built-in fetch). Works in discord.js, or any Node bot.
+const API_KEY = process.env.CATION_KEY;
+const URL = &quot;https://cation-6a.manex-api.workers.dev/v1/chat/completions&quot;;
+
+async function askCation(messages) {
+  const res = await fetch(URL, {
+    method: &quot;POST&quot;,
+    headers: {
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify({ messages }),
+  });
+  if (!res.ok) throw new Error(`Cation returned ${res.status}`);
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
+// Example: reply when someone mentions your bot in Discord
+client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
+  if (msg.author.bot || !msg.mentions.has(client.user)) return;
+  const text = msg.content.replace(/&lt;@!?\d+&gt;/g, &quot;&quot;).trim();
+  try {
+    const reply = await askCation([{ role: &quot;user&quot;, content: text }]);
+    await msg.reply(reply.slice(0, 2000)); // Discord messages are limited to 2000 characters
+  } catch (err) {
+    await msg.reply(&quot;Cation is unavailable right now. Please try again later.&quot;);
+  }
+});</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <span class="eyebrow">Good to know</span>
+      <h2 class="page-title">Bot notes</h2>
+      <div class="faq">
+        <details>
+          <summary>Does Cation remember earlier messages?</summary>
+          <p>No. Each request stands alone. To keep a conversation going, your bot must send the recent messages back in the <code>messages</code> list, alternating <code>user</code> and <code>assistant</code>. The API reads the last 30 messages.</p>
+        </details>
+        <details>
+          <summary>Can I change its tone?</summary>
+          <p>Yes. Add an optional <code>personality</code> field of up to 300 characters, such as "short and friendly". It only changes tone and form. Cation's identity and rules stay the same.</p>
+        </details>
+        <details>
+          <summary>What does a reply look like?</summary>
+          <p>The reply is JSON in the same shape as common chat APIs. The text is at <code>choices[0].message.content</code>. Replies are capped in length, so long answers may be shorter than you expect.</p>
+        </details>
+        <details>
+          <summary>What errors can I get?</summary>
+          <p><code>401</code> means the key is missing, wrong, or replaced. <code>429</code> means the shared daily allowance has run out, so the service will work again tomorrow. Your bot should show a short message in both cases.</p>
+        </details>
+        <details>
+          <summary>Can I check my key or see the models?</summary>
+          <p><code>GET /v1/key</code> with your key confirms it's active. <code>GET /v1/models</code> lists the model name to use, which is <code>cation</code>.</p>
+        </details>
+        <details>
+          <summary>Should I call it from the browser?</summary>
+          <p>No. Anyone could read a key that's in public website code. Call Cation from your own server or bot, and keep the key private.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+<section class="section alt">
             <div class="wrap">
                 <span class="eyebrow">FAQ</span>
                 <h2 class="page-title">Questions</h2>
@@ -179,13 +295,18 @@
 
 <script>
   // Replace YOUR-SUBDOMAIN with your Worker's subdomain. This is the only place you need to edit.
-  const WORKER = "https://cation-6a.manex-api.workers.dev";
+  const WORKER = "https://cation-api.YOUR-SUBDOMAIN.workers.dev";
   const TOKEN_KEY = "cation_session";
   const $ = (id) => document.getElementById(id);
 
   // The sign-in buttons start on the Worker, which sends the browser back here.
   document.querySelectorAll("[data-path]").forEach((el) => {
     el.href = WORKER + el.dataset.path;
+  });
+
+  // Show the live endpoint in the bot examples.
+  document.querySelectorAll("[data-endpoint]").forEach((el) => {
+    el.textContent = WORKER + "/v1/chat/completions";
   });
 
   function showMessage(text, isError = false) {
