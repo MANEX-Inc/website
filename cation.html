@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cation API · MANEX Inc.</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  [hidden] { display: none !important; }
+  .code-block {
+    white-space: pre-wrap;
+    word-break: break-all;
+    background: #f7f7f8;
+    border: 1px solid #e7e7ea;
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-size: 0.88rem;
+    margin-top: 1.5rem;
+  }
+  .key-value {
+    display: block;
+    font-size: 1rem;
+    word-break: break-all;
+    background: #f7f7f8;
+    border: 1px solid #e7e7ea;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+  }
+  .hero-note { margin-top: 1.5rem; font-size: 0.9rem; color: #6e6e73; }
+  .status { margin-top: 1.25rem; font-size: 0.95rem; color: #3a3a3d; }
+  .status.error { color: #8b1e1e; }
+  .panel { margin-top: 2rem; }
+  .panel .card { margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="topbar">
+    <a class="nav-logo" href="./">
+      <span class="nav-logo-text">MANEX</span>
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-item active" href="cation.html">Cation API</a></li>
+      <li><a class="nav-item" href="./">Home</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Cation API</span>
+      <h1>Get your free API key</h1>
+      <p>Cation is MANEX's AI assistant. Sign in to create your personal key. Each account gets one free key.</p>
+
+      <div id="signed-out" class="hero-btns">
+        <a class="btn btn-primary" data-path="/auth/google/login">Continue with Google</a>
+        <a class="btn btn-outline" data-path="/auth/login">Continue with GitHub</a>
+      </div>
+
+      <div id="signed-in" class="panel" hidden>
+        <h2 class="page-title" id="greeting"></h2>
+        <p class="page-lead" id="via"></p>
+        <div class="card">
+          <p id="key-status"></p>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="create-btn" type="button">Create my free key</button>
+            <button class="btn btn-outline" id="replace-btn" type="button">Replace my key</button>
+            <button class="btn btn-outline" id="signout-btn" type="button">Sign out</button>
+          </div>
+        </div>
+      </div>
+
+      <p id="message" class="status" hidden></p>
+      <p class="hero-note">You'll see Google's or GitHub's own sign-in screen. MANEX never sees your password.</p>
+    </div>
+  </section>
+
+  <section id="key-box" class="section alt" hidden>
+    <div class="wrap">
+      <span class="eyebrow">Save this now</span>
+      <h2 class="page-title">Your free API key</h2>
+      <p class="page-lead">Copy it now. For security, it won't be shown again.</p>
+      <code id="key-value" class="key-value"></code>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="copy-btn" type="button">Copy key</button>
+      </div>
+      <pre class="code-block" id="curl-example"></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2 class="page-title">Three steps</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Sign in</h3>
+          <p>Use your Google or GitHub account.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Create your key</h3>
+          <p>Press one button to get your free key. It's shown once, so copy it right away.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Call Cation</h3>
+          <p>Send requests to the endpoint with your key in the Authorization header.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="page-title">Questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Is it free?</summary>
+          <p>Yes. Each account gets one free key. Everyone shares one daily allowance, so the service can pause when it runs out.</p>
+        </details>
+        <details>
+          <summary>Can I have more than one key?</summary>
+          <p>One key per account. You can replace it at any time, and the old key stops working right away.</p>
+        </details>
+        <details>
+          <summary>What if I lose my key?</summary>
+          <p>Sign in again and choose Replace my key. Keys are shown only once, so save yours when it appears.</p>
+        </details>
+        <details>
+          <summary>What do you store about me?</summary>
+          <p>Your account ID, your username, and a hash of your key. This browser keeps a sign-in token until you sign out.</p>
+        </details>
+        <details>
+          <summary>Can I use it in my bot?</summary>
+          <p>Yes. Call the endpoint from your own server or agent, and keep your key private. Don't put it in public website code.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 MANEX Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Replace YOUR-SUBDOMAIN with your Worker's subdomain. This is the only place you need to edit.
+  const WORKER = "https://cation-6a.akshaj-kulkarni24.workers.dev";
+  const TOKEN_KEY = "cation_session";
+  const $ = (id) => document.getElementById(id);
+
+  // The sign-in buttons start on the Worker, which sends the browser back here.
+  document.querySelectorAll("[data-path]").forEach((el) => {
+    el.href = WORKER + el.dataset.path;
+  });
+
+  function showMessage(text, isError = false) {
+    const box = $("message");
+    box.textContent = text;
+    box.hidden = !text;
+    box.classList.toggle("error", isError);
+  }
+
+  async function api(path, options = {}) {
+    const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) headers.Authorization = `Bearer ${token}`;
+    const res = await fetch(WORKER + path, { ...options, headers });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data?.error?.message || `Request failed (${res.status}).`);
+    return data;
+  }
+
+  function showSignedOut() {
+    $("signed-out").hidden = false;
+    $("signed-in").hidden = true;
+  }
+
+  async function showAccount() {
+    const me = await api("/auth/me");
+    $("signed-out").hidden = true;
+    $("signed-in").hidden = false;
+    $("greeting").textContent = `Hello, ${me.login}`;
+    $("via").textContent = `Signed in with ${me.provider === "google" ? "Google" : "GitHub"}.`;
+    $("key-status").textContent = me.hasKey
+      ? `Your free key is active (created ${me.created.slice(0, 10)}). If you've lost it, replace it.`
+      : "You don't have a key yet. Create your free key below.";
+    $("create-btn").hidden = me.hasKey;
+    $("replace-btn").hidden = !me.hasKey;
+  }
+
+  function showKey(key) {
+    $("key-value").textContent = key;
+    $("curl-example").textContent =
+      `curl ${WORKER}/v1/chat/completions -H "Authorization: Bearer ${key}" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"Hello, Cation"}]}'`;
+    $("key-box").hidden = false;
+    $("key-box").scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function getKey(replace) {
+    if (replace && !confirm("The current key will stop working right away. Continue?")) return;
+    try {
+      const data = await api(replace ? "/auth/regenerate" : "/auth/key", { method: "POST" });
+      showKey(data.key);
+      await showAccount();
+      showMessage("");
+    } catch (err) {
+      showMessage(err.message, true);
+    }
+  }
+
+  async function signOut() {
+    try {
+      await api("/auth/logout", { method: "POST" });
+    } catch (err) {
+      // Even if the server call fails, the browser still forgets the token below.
+    }
+    localStorage.removeItem(TOKEN_KEY);
+    $("key-box").hidden = true;
+    showSignedOut();
+    showMessage("");
+  }
+
+  $("create-btn").addEventListener("click", () => getKey(false));
+  $("replace-btn").addEventListener("click", () => getKey(true));
+  $("signout-btn").addEventListener("click", signOut);
+  $("copy-btn").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText($("key-value").textContent);
+      showMessage("Key copied.");
+    } catch {
+      showMessage("Couldn't copy automatically. Select the key and copy it.", true);
+    }
+  });
+
+  async function init() {
+    if (new URLSearchParams(location.search).get("auth") === "failed") {
+      showMessage("Sign-in didn't work. Please try again.", true);
+    }
+
+    // After sign-in, the Worker sends the browser back here with a one-time ticket in the URL.
+    const ticket = new URLSearchParams(location.hash.slice(1)).get("ticket");
+    if (ticket) {
+      history.replaceState(null, "", location.pathname);
+      try {
+        const data = await api("/auth/exchange", { method: "POST", body: JSON.stringify({ ticket }) });
+        localStorage.setItem(TOKEN_KEY, data.token);
+      } catch (err) {
+        showMessage(err.message, true);
+      }
+    }
+
+    if (localStorage.getItem(TOKEN_KEY)) {
+      try {
+        await showAccount();
+        return;
+      } catch {
+        // The saved sign-in has expired or was removed. Ask the visitor to sign in again.
+        localStorage.removeItem(TOKEN_KEY);
+      }
+    }
+    showSignedOut();
+  }
+
+  init();
+</script>
+
+</body>
+</html>
