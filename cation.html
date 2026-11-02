@@ -1,18 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="mHJNDv8RBPXiSzrul7kGbyPWmKvSy2_yMdU9v67b-m4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cation API · MANEX Inc.</title>
-    <meta name="description" content="Get your free Cation API key from MANEX Inc. Sign in with Google or GitHub to create one key per account." />
+    <meta name="description" content="Get your free Cation API key from MANEX Inc. Sign in with a passkey or GitHub to create one key per account." />
     <meta name="theme-color" content="#0d0a0a" />
+    <link rel="canonical" href="https://manextech.s.gy/cation.html" />
     <link rel="icon" href="assets/logo.png" type="image/png">
     <link rel="shortcut icon" href="assets/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0d0a0a;
+            --surface: #161112;
+            --surface-2: #1f1718;
+            --border: #2c2224;
+            --text: #f3ecea;
+            --muted: #a59a98;
+            --accent: #b3282a;
+            --accent-hover: #9a1f22;
+            --accent-soft: #e2574f;
+            --font: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-soft);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .wrap {
+            width: min(1120px, 100% - 3rem);
+            margin-inline: auto;
+        }
+
+        /* Navigation */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(13, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .topbar .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+            gap: 1.5rem;
+        }
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            display: inline-block;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--muted);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav-item:hover { color: var(--text); background: var(--surface); }
+        .nav-item.active { color: var(--text); }
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            margin-left: 0.5rem;
+        }
+        .nav-cta:hover { background: var(--accent-hover); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-outline { border-color: var(--border); color: var(--text); background: transparent; }
+        .btn-outline:hover { border-color: var(--muted); background: var(--surface); }
+        .btn-light { background: #fff; color: #2a0d0d; }
+        .btn-light:hover { background: #f1e7e4; }
+
+        /* Hero */
+        .hero {
+            padding: clamp(5rem, 12vw, 9rem) 0 clamp(4rem, 9vw, 6.5rem);
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+        }
+        .hero-brand img { width: 26px; height: 26px; border-radius: 6px; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            margin: 0 0 1.5rem;
+            max-width: 15ch;
+        }
+        .hero p.lede {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 52ch;
+            margin: 0 0 2.5rem;
+        }
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+        /* Sections */
+        .section { padding: clamp(4rem, 8vw, 6rem) 0; }
+        .section.alt {
+            background: var(--surface);
+            border-block: 1px solid var(--border);
+        }
+        .section-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+            margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+        }
+        .section h2 {
+            font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin: 0;
+            max-width: 20ch;
+        }
+        .section-head p {
+            color: var(--muted);
+            margin: 0;
+            max-width: 42ch;
+            justify-self: end;
+        }
+
+        /* Anniversary */
+        .anniv { padding: clamp(3rem, 6vw, 4.5rem) 0; }
+        .anniv-panel {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: clamp(2rem, 5vw, 3.5rem);
+            align-items: center;
+            padding: clamp(2rem, 4.5vw, 3rem);
+            border-radius: 16px;
+            background: linear-gradient(120deg, #3a0f10 0%, var(--surface) 70%);
+            border: 1px solid var(--border);
+        }
+        .anniv-num {
+            font-size: clamp(5rem, 11vw, 8rem);
+            font-weight: 700;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            color: #fff;
+        }
+        .anniv h2 {
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin: 0 0 0.75rem;
+        }
+        .anniv p { margin: 0 0 1.5rem; max-width: 52ch; color: var(--muted); }
+
+        /* Principles */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .principle {
+            background: var(--bg);
+            padding: 2rem 2.25rem;
+        }
+        .principle h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.45rem;
+        }
+        .principle p { margin: 0; color: var(--muted); }
+
+        /* App cards */
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem;
+        }
+        .app {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding: 1.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .app:hover { border-color: var(--accent); background: var(--surface-2); }
+        .app-name { font-size: 1.15rem; font-weight: 600; }
+        .app-desc { color: var(--muted); font-size: 0.92rem; }
+        .app-store {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--accent-soft);
+        }
+
+        /* Timeline */
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-width: 720px;
+            border-top: 1px solid var(--border);
+        }
+        .timeline li {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            align-items: baseline;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .timeline .when {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .timeline .what { font-size: 1.05rem; font-weight: 600; }
+
+        /* Volt */
+        .volt {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+        .volt h2 { margin-bottom: 0.75rem; }
+        .volt-lead { color: var(--muted); margin: 0 0 1.5rem; max-width: 48ch; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .chip {
+            padding: 0.35rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+            background: var(--bg);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-brand .hero-brand { color: var(--text); margin-bottom: 0.9rem; }
+        .footer-brand p { margin: 0; max-width: 32ch; color: var(--muted); font-size: 0.92rem; }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin: 0 0 1rem;
+            font-weight: 600;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+        .footer-col a { text-decoration: none; color: var(--muted); font-size: 0.92rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--text); }
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding-top: 1.75rem;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+        .footer-bottom p { margin: 0; }
+        .footer-bottom a { color: var(--accent-soft); }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .section-head, .volt { grid-template-columns: 1fr; }
+            .section-head p { justify-self: start; }
+            .anniv-panel { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            .topbar .wrap { height: auto; padding: 0.75rem 0; flex-wrap: wrap; }
+            .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 0.1rem; }
+            .nav-item { padding: 0.45rem 0.6rem; font-size: 0.85rem; }
+            .nav-cta { margin-left: 0; }
+            .principles { grid-template-columns: 1fr; }
+            .timeline li { grid-template-columns: 1fr; gap: 0.25rem; }
+            .footer-top { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    
+        .eyebrow { display: inline-block; color: var(--accent-soft); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .page-title { font-size: clamp(1.9rem, 3.6vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; margin: 0 0 0.75rem; }
+        .page-lead { color: var(--muted); margin: 0 0 1.5rem; max-width: 60ch; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        .hero .lede { margin-bottom: 2.25rem; }
+        .panel { margin-top: 2.25rem; }
+        .panel .page-title { font-size: 1.9rem; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; margin-top: 1rem; }
+        .card h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5rem; }
+        .card p { color: var(--muted); margin: 0 0 1rem; max-width: none; }
+        .card p:last-child { margin-bottom: 0; }
+        .card + .card { margin-top: 1.25rem; }
+        .card-lang { font-size: 0.8rem; font-weight: 600; color: var(--accent-soft); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 0.75rem; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+        .hero-note { margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+        .status { margin-top: 1.25rem; font-size: 0.95rem; color: var(--text); }
+        .status.error { color: var(--accent-soft); }
+        .key-value { display: block; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 1rem; word-break: break-all; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; color: var(--text); }
+        .code-block { white-space: pre-wrap; word-break: break-all; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; font-size: 0.88rem; color: var(--muted); margin: 1.5rem 0 0; }
+        .card .code-block { margin: 0; }
+        code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 0.1rem 0.35rem; color: var(--text); }
+        .code-block code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.25rem; }
+        .step { background: var(--bg); padding: 2rem 2.25rem; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
+        .step h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.45rem; }
+        .step p { margin: 0; color: var(--muted); }
+        .faq { max-width: 820px; display: grid; gap: 0.75rem; }
+        .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.4rem; }
+        .faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: "+"; color: var(--accent-soft); font-size: 1.3rem; line-height: 1; }
+        .faq details[open] summary::after { content: "–"; }
+        .faq details p { margin: 0.75rem 0 0; color: var(--muted); }
+        .text-input { flex: 1 1 200px; min-width: 0; font: inherit; font-size: 1rem; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
+        .text-input:focus { outline: none; border-color: var(--accent-soft); }
+        [hidden] { display: none !important; }
+        @media (max-width: 960px) { .steps { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
     <header>
@@ -44,9 +437,19 @@
                 <h1>Get your free API key.</h1>
                 <p class="lede">Cation is MANEX's AI chat model. Sign in to create your personal key. Each account gets one free key.</p>
 
-                <div id="signed-out" class="hero-btns">
-                    <a class="btn btn-primary" data-path="/auth/google/login">Continue with Google</a>
-                    <a class="btn btn-outline" data-path="/auth/login">Continue with GitHub</a>
+                <div id="signed-out">
+                    <div class="hero-btns">
+                        <button class="btn btn-primary" id="passkey-login-btn" type="button">Sign in with a passkey</button>
+                        <a class="btn btn-outline" data-path="/auth/login">Continue with GitHub</a>
+                    </div>
+                    <div class="card">
+                        <h3>New here? Create a passkey</h3>
+                        <p>Choose a username. Your device will confirm with its fingerprint, face, or PIN. No password is created.</p>
+                        <div class="btn-row">
+                            <input id="passkey-username" class="text-input" type="text" maxlength="32" placeholder="Username" autocomplete="username" />
+                            <button class="btn btn-primary" id="passkey-register-btn" type="button">Create passkey</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="signed-in" class="panel" hidden>
@@ -63,7 +466,7 @@
                 </div>
 
                 <p id="message" class="status" hidden></p>
-                <p class="hero-note">You'll see Google's or GitHub's own sign-in screen. MANEX never sees your password.</p>
+                <p class="hero-note">Passkeys use your device's own unlock, so MANEX never sees your fingerprint, face, or PIN. GitHub sign-in happens on GitHub's own screen.</p>
             </div>
         </section>
 
@@ -88,7 +491,7 @@
                     <div class="step">
                         <div class="step-num">1</div>
                         <h3>Sign in</h3>
-                        <p>Use your Google or GitHub account.</p>
+                        <p>Use a passkey or your GitHub account.</p>
                     </div>
                     <div class="step">
                         <div class="step-num">2</div>
@@ -140,7 +543,7 @@
 import requests
 
 API_KEY = os.environ[&quot;CATION_KEY&quot;]  # keep the key in an environment variable
-URL = &quot;https://cation-6a.manex-api.workers.dev/v1/chat/completions&quot;
+URL = &quot;https://cation-api.YOUR-SUBDOMAIN.workers.dev/v1/chat/completions&quot;
 
 resp = requests.post(
     URL,
@@ -156,7 +559,7 @@ print(resp.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quo
         <p class="card-lang">JavaScript (Node 18+, discord.js example)</p>
                 <pre class="code-block"><code>// Node 18+ (built-in fetch). Works in discord.js, or any Node bot.
 const API_KEY = process.env.CATION_KEY;
-const URL = &quot;https://cation-6a.manex-api.workers.dev/v1/chat/completions&quot;;
+const URL = &quot;https://cation-api.YOUR-SUBDOMAIN.workers.dev/v1/chat/completions&quot;;
 
 async function askCation(messages) {
   const res = await fetch(URL, {
@@ -238,8 +641,12 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
                         <p>Sign in again and choose Replace my key. Keys are shown only once, so save yours when it appears.</p>
                     </details>
                     <details>
+                        <summary>What if I lose my device?</summary>
+                        <p>A passkey lives on the device where you created it. If you lose that device, you can't sign in with that passkey, and there is no recovery. You can create a new passkey account with a different username.</p>
+                    </details>
+                    <details>
                         <summary>What do you store about me?</summary>
-                        <p>Your account ID, your username, and a hash of your key. This browser keeps a sign-in token until you sign out.</p>
+                        <p>Your account ID, your username or GitHub login, and a hash of your key. For passkeys, we store only the public key, which can't sign anyone in by itself. This browser keeps a sign-in token until you sign out.</p>
                     </details>
                     <details>
                         <summary>Can I use it in my bot?</summary>
@@ -248,6 +655,7 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer>
@@ -309,6 +717,109 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
     el.textContent = WORKER + "/v1/chat/completions";
   });
 
+  // ----- Passkeys -----
+  function b64uToBuf(text) {
+    const b64 = text.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(text.length / 4) * 4, "=");
+    return Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  }
+
+  function bufToB64u(buf) {
+    let bin = "";
+    new Uint8Array(buf).forEach((b) => (bin += String.fromCharCode(b)));
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  async function passkeyPost(path, body) {
+    const res = await fetch(WORKER + path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body || {}),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data?.error?.message || `Request failed (${res.status}).`);
+    return data;
+  }
+
+  function passkeyError(err) {
+    if (err && err.name === "NotAllowedError") return "The passkey step was cancelled or timed out. Please try again.";
+    return err?.message || "Passkey sign-in failed. Please try again.";
+  }
+
+  function passkeysAvailable() {
+    return Boolean(window.PublicKeyCredential && navigator.credentials);
+  }
+
+  async function finishPasskeySignIn(data) {
+    localStorage.setItem(TOKEN_KEY, data.token);
+    await showAccount();
+    showMessage("");
+  }
+
+  async function registerPasskey() {
+    const username = $("passkey-username").value.trim();
+    if (!username) return showMessage("Choose a username first.", true);
+    if (!passkeysAvailable()) return showMessage("This browser doesn't support passkeys. Try GitHub instead.", true);
+    try {
+      const opts = await passkeyPost("/auth/passkey/register/options", { username });
+      const pk = opts.publicKey;
+      const cred = await navigator.credentials.create({
+        publicKey: {
+          challenge: b64uToBuf(pk.challenge),
+          rp: pk.rp,
+          user: { id: b64uToBuf(pk.user.id), name: pk.user.name, displayName: pk.user.displayName },
+          pubKeyCredParams: pk.pubKeyCredParams,
+          authenticatorSelection: pk.authenticatorSelection,
+          attestation: pk.attestation,
+          timeout: pk.timeout,
+        },
+      });
+      const data = await passkeyPost("/auth/passkey/register/finish", {
+        challengeId: opts.challengeId,
+        credential: {
+          id: cred.id,
+          response: {
+            clientDataJSON: bufToB64u(cred.response.clientDataJSON),
+            attestationObject: bufToB64u(cred.response.attestationObject),
+          },
+        },
+      });
+      await finishPasskeySignIn(data);
+    } catch (err) {
+      showMessage(passkeyError(err), true);
+    }
+  }
+
+  async function signInWithPasskey() {
+    if (!passkeysAvailable()) return showMessage("This browser doesn't support passkeys. Try GitHub instead.", true);
+    try {
+      const opts = await passkeyPost("/auth/passkey/login/options", {});
+      const pk = opts.publicKey;
+      const cred = await navigator.credentials.get({
+        publicKey: {
+          challenge: b64uToBuf(pk.challenge),
+          rpId: pk.rpId,
+          allowCredentials: [],
+          userVerification: pk.userVerification,
+          timeout: pk.timeout,
+        },
+      });
+      const data = await passkeyPost("/auth/passkey/login/finish", {
+        challengeId: opts.challengeId,
+        credential: {
+          id: cred.id,
+          response: {
+            clientDataJSON: bufToB64u(cred.response.clientDataJSON),
+            authenticatorData: bufToB64u(cred.response.authenticatorData),
+            signature: bufToB64u(cred.response.signature),
+          },
+        },
+      });
+      await finishPasskeySignIn(data);
+    } catch (err) {
+      showMessage(passkeyError(err), true);
+    }
+  }
+
   function showMessage(text, isError = false) {
     const box = $("message");
     box.textContent = text;
@@ -336,7 +847,7 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
     $("signed-out").hidden = true;
     $("signed-in").hidden = false;
     $("greeting").textContent = `Hello, ${me.login}`;
-    $("via").textContent = `Signed in with ${me.provider === "google" ? "Google" : "GitHub"}.`;
+    $("via").textContent = `Signed in with ${me.provider === "passkey" ? "a passkey" : "GitHub"}.`;
     $("key-status").textContent = me.hasKey
       ? `Your free key is active (created ${me.created.slice(0, 10)}). If you've lost it, replace it.`
       : "You don't have a key yet. Create your free key below.";
@@ -379,6 +890,8 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
   $("create-btn").addEventListener("click", () => getKey(false));
   $("replace-btn").addEventListener("click", () => getKey(true));
   $("signout-btn").addEventListener("click", signOut);
+  $("passkey-login-btn").addEventListener("click", signInWithPasskey);
+  $("passkey-register-btn").addEventListener("click", registerPasskey);
   $("copy-btn").addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText($("key-value").textContent);
