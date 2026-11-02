@@ -559,7 +559,7 @@ print(resp.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quo
         <p class="card-lang">JavaScript (Node 18+, discord.js example)</p>
                 <pre class="code-block"><code>// Node 18+ (built-in fetch). Works in discord.js, or any Node bot.
 const API_KEY = process.env.CATION_KEY;
-const URL = &quot;https://cation-api.YOUR-SUBDOMAIN.workers.dev/v1/chat/completions&quot;;
+const URL = &quot;https://cation-6a.manex-api.workers.dev/v1/chat/completions&quot;;
 
 async function askCation(messages) {
   const res = await fetch(URL, {
@@ -702,8 +702,8 @@ client.on(&quot;messageCreate&quot;, async (msg) =&gt; {
     </footer>
 
 <script>
-  // Replace YOUR-SUBDOMAIN with your Worker's subdomain. This is the only place you need to edit.
-  const WORKER = "https://cation-api.YOUR-SUBDOMAIN.workers.dev";
+  // Replace manex-api with your Worker's subdomain. This is the only place you need to edit.
+  const WORKER = "https://cation-6a.manex-api.workers.dev";
   const TOKEN_KEY = "cation_session";
   const $ = (id) => document.getElementById(id);
 
