@@ -28,31 +28,6 @@
   --mono: "Cascadia Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --base: #f6eeee;
-    --text: #1d1213;
-    --text-2: rgba(29, 18, 19, .74);
-    --text-3: rgba(29, 18, 19, .5);
-    --accent: #c81e25;
-    --accent-hover: #e0292f;
-    --accent-soft: rgba(200, 30, 37, .1);
-    --glass: rgba(255, 255, 255, .6);
-    --glass-strong: rgba(255, 252, 252, .8);
-    --fill: rgba(255, 255, 255, .72);
-    --fill-hover: rgba(255, 255, 255, .95);
-    --line: rgba(60, 20, 24, .09);
-    --line-strong: rgba(60, 20, 24, .4);
-    --edge-hi: rgba(255, 255, 255, .95);
-    --shadow: 0 10px 30px rgba(80, 20, 28, .12);
-    --mica-1: rgba(230, 60, 66, .3);
-    --mica-2: rgba(255, 170, 170, .35);
-    --mica-3: rgba(255, 255, 255, .6);
-    --mica-4: rgba(255, 255, 255, .5);
-  }
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
@@ -250,7 +225,7 @@ main > section.alt {
 }
 .when { color: var(--text-3); font-size: 14px; font-variant-numeric: tabular-nums; }
 .what { font-weight: 600; font-size: 16px; color: var(--text); }
-.note { color: var(--text-2); font-size: 14px; }
+.note { display: block; margin-top: 4px; color: var(--text-2); font-size: 14px; }
 
 /* ---------- Download apps ---------- */
 .apps {
