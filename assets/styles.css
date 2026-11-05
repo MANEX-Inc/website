@@ -1,278 +1,272 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cation API · MANEX Inc.</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-  [hidden] { display: none !important; }
-  .code-block {
-    white-space: pre-wrap;
-    word-break: break-all;
-    background: #f7f7f8;
-    border: 1px solid #e7e7ea;
-    border-radius: 12px;
-    padding: 1.25rem;
-    font-size: 0.88rem;
-    margin-top: 1.5rem;
+/* Cation API · MANEX: Windows 11 glass and mica */
+
+:root {
+  color-scheme: dark;
+  --base: #0b0f1e;
+  --text: #f4f6ff;
+  --muted: rgba(230, 236, 255, .68);
+  --accent: #60cdff;
+  --accent-hover: #8adcff;
+  --accent-ink: #00243a;
+  --accent-soft: rgba(96, 205, 255, .14);
+  --glass: rgba(36, 42, 68, .45);
+  --glass-strong: rgba(26, 31, 52, .72);
+  --fill: rgba(255, 255, 255, .06);
+  --fill-hover: rgba(255, 255, 255, .11);
+  --stroke: rgba(255, 255, 255, .10);
+  --stroke-hi: rgba(255, 255, 255, .20);
+  --sheen: rgba(255, 255, 255, .09);
+  --code-bg: rgba(0, 0, 0, .28);
+  --error: #ff99a4;
+  --error-bg: rgba(255, 99, 99, .12);
+  --shadow: 0 18px 44px rgba(0, 0, 0, .34), 0 2px 6px rgba(0, 0, 0, .22);
+  --mica-1: rgba(63, 184, 255, .42);
+  --mica-2: rgba(124, 108, 255, .36);
+  --mica-3: rgba(45, 224, 196, .22);
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --mono: "Cascadia Code", "Cascadia Mono", Consolas, ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --base: #eef2fb;
+    --text: #1b1b1f;
+    --muted: rgba(27, 27, 31, .68);
+    --accent: #0067c0;
+    --accent-hover: #1a78cc;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(0, 103, 192, .12);
+    --glass: rgba(255, 255, 255, .58);
+    --glass-strong: rgba(255, 255, 255, .78);
+    --fill: rgba(0, 0, 0, .04);
+    --fill-hover: rgba(0, 0, 0, .07);
+    --stroke: rgba(20, 30, 60, .09);
+    --stroke-hi: rgba(255, 255, 255, .95);
+    --sheen: rgba(0, 103, 192, .08);
+    --code-bg: rgba(255, 255, 255, .6);
+    --error: #c42b1c;
+    --error-bg: rgba(196, 43, 28, .08);
+    --shadow: 0 14px 36px rgba(40, 60, 120, .14), 0 1px 3px rgba(40, 60, 120, .08);
+    --mica-1: rgba(127, 211, 255, .55);
+    --mica-2: rgba(185, 168, 255, .5);
+    --mica-3: rgba(143, 240, 220, .45);
   }
-  .key-value {
-    display: block;
-    font-size: 1rem;
-    word-break: break-all;
-    background: #f7f7f8;
-    border: 1px solid #e7e7ea;
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-  }
-  .hero-note { margin-top: 1.5rem; font-size: 0.9rem; color: #6e6e73; }
-  .status { margin-top: 1.25rem; font-size: 0.95rem; color: #3a3a3d; }
-  .status.error { color: #8b1e1e; }
-  .panel { margin-top: 2rem; }
-  .panel .card { margin-top: 1rem; }
-</style>
-</head>
-<body>
+}
 
-<header>
-  <nav class="topbar">
-    <a class="nav-logo" href="./">
-      <span class="nav-logo-text">MANEX</span>
-    </a>
-    <ul class="nav-links">
-      <li><a class="nav-item active" href="cation.html">Cation API</a></li>
-      <li><a class="nav-item" href="./">Home</a></li>
-    </ul>
-  </nav>
-</header>
+[hidden] { display: none !important; }
+*, *::before, *::after { box-sizing: border-box; }
 
-<main>
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--base);
+  -webkit-font-smoothing: antialiased;
+}
 
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <span class="eyebrow">Cation API</span>
-      <h1>Get your free API key</h1>
-      <p>Cation is MANEX's AI assistant. Sign in to create your personal key. Each account gets one free key.</p>
+/* Mica: soft colour fields behind the glass, like a tinted wallpaper */
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(circle 46vmax at -4% -8%, var(--mica-1), transparent 70%),
+    radial-gradient(circle 40vmax at 104% 10%, var(--mica-2), transparent 70%),
+    radial-gradient(circle 44vmax at 40% 118%, var(--mica-3), transparent 70%);
+}
 
-      <div id="signed-out" class="hero-btns">
-        <a class="btn btn-primary" data-path="/auth/google/login">Continue with Google</a>
-        <a class="btn btn-outline" data-path="/auth/login">Continue with GitHub</a>
-      </div>
+/* Fine grid and grain, faded toward the bottom of the page */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(var(--stroke) 1px, transparent 1px),
+    linear-gradient(90deg, var(--stroke) 1px, transparent 1px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+  background-size: 56px 56px, 56px 56px, 180px 180px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 85%);
+          mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 85%);
+}
 
-      <div id="signed-in" class="panel" hidden>
-        <h2 class="page-title" id="greeting"></h2>
-        <p class="page-lead" id="via"></p>
-        <div class="card">
-          <p id="key-status"></p>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="create-btn" type="button">Create my free key</button>
-            <button class="btn btn-outline" id="replace-btn" type="button">Replace my key</button>
-            <button class="btn btn-outline" id="signout-btn" type="button">Sign out</button>
-          </div>
-        </div>
-      </div>
+/* ---------- Top bar: a floating acrylic strip ---------- */
+header { position: sticky; top: 0; z-index: 20; padding: 12px 24px 0; }
+.topbar {
+  max-width: 1040px; height: 52px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 0 8px 0 16px; border-radius: 12px;
+  background: var(--glass-strong);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow), inset 0 1px 0 var(--stroke-hi);
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--text); text-decoration: none;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: .04em;
+}
+.nav-logo::before {
+  content: ""; width: 18px; height: 18px; border-radius: 5px;
+  background: linear-gradient(135deg, var(--mica-1), var(--mica-2));
+  box-shadow: 0 0 16px var(--accent-soft);
+}
+.nav-links { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.nav-item {
+  position: relative; padding: 7px 14px; border-radius: 6px;
+  color: var(--muted); text-decoration: none; font-size: 14px;
+  transition: background .15s, color .15s;
+}
+.nav-item:hover { background: var(--fill-hover); color: var(--text); }
+.nav-item.active { color: var(--text); background: var(--fill); }
+.nav-item.active::after {
+  content: ""; position: absolute; left: 50%; bottom: -7px;
+  width: 20px; height: 3px; margin-left: -10px; border-radius: 3px;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent);
+}
 
-      <p id="message" class="status" hidden></p>
-      <p class="hero-note">You'll see Google's or GitHub's own sign-in screen. MANEX never sees your password.</p>
-    </div>
-  </section>
+/* ---------- Layout ---------- */
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 56px 0; }
+.section.alt { background: var(--fill); border-block: 1px solid var(--stroke); }
+footer { padding: 24px 0 48px; }
+.footer-inner { max-width: 1040px; margin: 0 auto; padding: 20px 24px 0; border-top: 1px solid var(--stroke); }
+footer p { margin: 0; font-size: 13px; color: var(--muted); }
 
-  <section id="key-box" class="section alt" hidden>
-    <div class="wrap">
-      <span class="eyebrow">Save this now</span>
-      <h2 class="page-title">Your free API key</h2>
-      <p class="page-lead">Copy it now. For security, it won't be shown again.</p>
-      <code id="key-value" class="key-value"></code>
-      <div class="btn-row">
-        <button class="btn btn-primary" id="copy-btn" type="button">Copy key</button>
-      </div>
-      <pre class="code-block" id="curl-example"></pre>
-    </div>
-  </section>
+/* ---------- Hero glass ---------- */
+.hero { padding: 40px 0 16px; }
+.hero-inner {
+  position: relative; overflow: hidden;
+  padding: 48px; border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow), inset 0 1px 0 var(--stroke-hi);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+}
+.hero-inner::before {
+  content: ""; position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.hero-inner h1 {
+  margin: 22px 0 12px; max-width: 18ch;
+  font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 600; line-height: 1.08; letter-spacing: -.03em;
+}
+.hero-inner > p { margin: 0; max-width: 56ch; font-size: 1.05rem; color: var(--muted); }
+.hero-inner .hero-note { margin-top: 24px; font-size: .85rem; color: var(--muted); }
+.hero-inner .status {
+  margin: 16px 0 0; padding: 12px 14px; border-radius: 8px;
+  font-size: 14px; background: var(--fill); border: 1px solid var(--stroke);
+}
+.hero-inner .status.error { color: var(--error); background: var(--error-bg); }
+.hero-inner .panel { margin-top: 28px; }
+.hero-inner .panel .card { margin-top: 16px; }
 
-  <section class="section">
-    <div class="wrap">
-      <span class="eyebrow">How it works</span>
-      <h2 class="page-title">Three steps</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Sign in</h3>
-          <p>Use your Google or GitHub account.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Create your key</h3>
-          <p>Press one button to get your free key. It's shown once, so copy it right away.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Call Cation</h3>
-          <p>Send requests to the endpoint with your key in the Authorization header.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ---------- Type ---------- */
+.eyebrow { display: block; margin-bottom: 12px; font-size: 13px; font-weight: 600; color: var(--accent); }
+.page-title {
+  margin: 0 0 8px; font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 600; line-height: 1.15; letter-spacing: -.02em;
+}
+.page-lead { margin: 0 0 22px; color: var(--muted); max-width: 60ch; }
 
-  <section class="section alt">
-    <div class="wrap">
-      <span class="eyebrow">FAQ</span>
-      <h2 class="page-title">Questions</h2>
-      <div class="faq">
-        <details>
-          <summary>Is it free?</summary>
-          <p>Yes. Each account gets one free key. Everyone shares one daily allowance, so the service can pause when it runs out.</p>
-        </details>
-        <details>
-          <summary>Can I have more than one key?</summary>
-          <p>One key per account. You can replace it at any time, and the old key stops working right away.</p>
-        </details>
-        <details>
-          <summary>What if I lose my key?</summary>
-          <p>Sign in again and choose Replace my key. Keys are shown only once, so save yours when it appears.</p>
-        </details>
-        <details>
-          <summary>What do you store about me?</summary>
-          <p>Your account ID, your username, and a hash of your key. This browser keeps a sign-in token until you sign out.</p>
-        </details>
-        <details>
-          <summary>Can I use it in my bot?</summary>
-          <p>Yes. Call the endpoint from your own server or agent, and keep your key private. Don't put it in public website code.</p>
-        </details>
-      </div>
-    </div>
-  </section>
+/* ---------- Buttons ---------- */
+.hero-btns, .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.card .btn-row { margin-top: 16px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 38px; padding: 0 18px; border-radius: 6px;
+  border: 1px solid var(--stroke); background: var(--fill); color: var(--text);
+  font: inherit; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background .15s, transform .08s, box-shadow .15s;
+}
+.btn:hover { background: var(--fill-hover); }
+.btn:active { transform: scale(.98); }
+.btn-outline { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .14); }
+.btn-primary {
+  background: var(--accent); color: var(--accent-ink); border-color: transparent;
+  box-shadow: 0 8px 24px -8px var(--accent), inset 0 -1px 0 rgba(0, 0, 0, .18);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-</main>
+/* ---------- Glass surfaces with a hover sheen (CSS only) ---------- */
+.card, .step, .faq details {
+  position: relative; overflow: hidden;
+  border-radius: 12px; border: 1px solid var(--stroke);
+  background: var(--glass);
+  box-shadow: var(--shadow), inset 0 1px 0 var(--stroke-hi);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+.card { padding: 24px; }
+.card::before, .step::before, .faq details::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, var(--sheen) 50%, transparent 65%);
+  background-size: 250% 100%; background-position: 120% 0;
+  opacity: 0; transition: background-position .7s ease, opacity .3s;
+}
+.card:hover::before, .step:hover::before, .faq details:hover::before {
+  opacity: 1; background-position: -20% 0;
+}
 
-<footer>
-  <div class="footer-inner">
-    <p>© 2026 MANEX Inc. All rights reserved.</p>
-  </div>
-</footer>
+/* ---------- Steps ---------- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+.step { padding: 24px; }
+.step-num {
+  display: grid; place-items: center; width: 30px; height: 30px; margin-bottom: 18px;
+  border-radius: 6px; border: 1px solid var(--stroke);
+  background: var(--accent-soft); color: var(--accent);
+  font-weight: 600; font-size: 14px;
+}
+.step h3 { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+.step p { margin: 0; color: var(--muted); font-size: 14.5px; }
 
-<script>
-  // Replace YOUR-SUBDOMAIN with your Worker's subdomain. This is the only place you need to edit.
-  const WORKER = "https://cation-api.YOUR-SUBDOMAIN.workers.dev";
-  const TOKEN_KEY = "cation_session";
-  const $ = (id) => document.getElementById(id);
+/* ---------- FAQ ---------- */
+.faq { display: grid; gap: 10px; max-width: 820px; margin-top: 24px; }
+.faq details { padding: 0 22px; }
+.faq summary {
+  position: relative; padding: 16px 32px 16px 0; cursor: pointer;
+  font-weight: 600; list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: 4px; top: 50%;
+  width: 7px; height: 7px; margin-top: -5px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s;
+}
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
+.faq details p { margin: 0 0 18px; max-width: 65ch; color: var(--muted); }
 
-  // The sign-in buttons start on the Worker, which sends the browser back here.
-  document.querySelectorAll("[data-path]").forEach((el) => {
-    el.href = WORKER + el.dataset.path;
-  });
+/* ---------- Key output ---------- */
+code.key-value {
+  display: block; padding: 14px 18px; border-radius: 8px;
+  border: 1px solid var(--stroke); background: var(--code-bg);
+  font-family: var(--mono); font-size: 1rem; color: var(--accent);
+  word-break: break-all;
+}
+pre.code-block {
+  margin-top: 20px; padding: 18px; border-radius: 8px;
+  border: 1px solid var(--stroke); background: var(--code-bg);
+  font-family: var(--mono); font-size: .84rem; line-height: 1.6; color: var(--muted);
+  white-space: pre-wrap; word-break: break-all;
+}
 
-  function showMessage(text, isError = false) {
-    const box = $("message");
-    box.textContent = text;
-    box.hidden = !text;
-    box.classList.toggle("error", isError);
-  }
-
-  async function api(path, options = {}) {
-    const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) headers.Authorization = `Bearer ${token}`;
-    const res = await fetch(WORKER + path, { ...options, headers });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data?.error?.message || `Request failed (${res.status}).`);
-    return data;
-  }
-
-  function showSignedOut() {
-    $("signed-out").hidden = false;
-    $("signed-in").hidden = true;
-  }
-
-  async function showAccount() {
-    const me = await api("/auth/me");
-    $("signed-out").hidden = true;
-    $("signed-in").hidden = false;
-    $("greeting").textContent = `Hello, ${me.login}`;
-    $("via").textContent = `Signed in with ${me.provider === "google" ? "Google" : "GitHub"}.`;
-    $("key-status").textContent = me.hasKey
-      ? `Your free key is active (created ${me.created.slice(0, 10)}). If you've lost it, replace it.`
-      : "You don't have a key yet. Create your free key below.";
-    $("create-btn").hidden = me.hasKey;
-    $("replace-btn").hidden = !me.hasKey;
-  }
-
-  function showKey(key) {
-    $("key-value").textContent = key;
-    $("curl-example").textContent =
-      `curl ${WORKER}/v1/chat/completions -H "Authorization: Bearer ${key}" -H "Content-Type: application/json" -d '{"messages":[{"role":"user","content":"Hello, Cation"}]}'`;
-    $("key-box").hidden = false;
-    $("key-box").scrollIntoView({ behavior: "smooth" });
-  }
-
-  async function getKey(replace) {
-    if (replace && !confirm("The current key will stop working right away. Continue?")) return;
-    try {
-      const data = await api(replace ? "/auth/regenerate" : "/auth/key", { method: "POST" });
-      showKey(data.key);
-      await showAccount();
-      showMessage("");
-    } catch (err) {
-      showMessage(err.message, true);
-    }
-  }
-
-  async function signOut() {
-    try {
-      await api("/auth/logout", { method: "POST" });
-    } catch (err) {
-      // Even if the server call fails, the browser still forgets the token below.
-    }
-    localStorage.removeItem(TOKEN_KEY);
-    $("key-box").hidden = true;
-    showSignedOut();
-    showMessage("");
-  }
-
-  $("create-btn").addEventListener("click", () => getKey(false));
-  $("replace-btn").addEventListener("click", () => getKey(true));
-  $("signout-btn").addEventListener("click", signOut);
-  $("copy-btn").addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText($("key-value").textContent);
-      showMessage("Key copied.");
-    } catch {
-      showMessage("Couldn't copy automatically. Select the key and copy it.", true);
-    }
-  });
-
-  async function init() {
-    if (new URLSearchParams(location.search).get("auth") === "failed") {
-      showMessage("Sign-in didn't work. Please try again.", true);
-    }
-
-    // After sign-in, the Worker sends the browser back here with a one-time ticket in the URL.
-    const ticket = new URLSearchParams(location.hash.slice(1)).get("ticket");
-    if (ticket) {
-      history.replaceState(null, "", location.pathname);
-      try {
-        const data = await api("/auth/exchange", { method: "POST", body: JSON.stringify({ ticket }) });
-        localStorage.setItem(TOKEN_KEY, data.token);
-      } catch (err) {
-        showMessage(err.message, true);
-      }
-    }
-
-    if (localStorage.getItem(TOKEN_KEY)) {
-      try {
-        await showAccount();
-        return;
-      } catch {
-        // The saved sign-in has expired or was removed. Ask the visitor to sign in again.
-        localStorage.removeItem(TOKEN_KEY);
-      }
-    }
-    showSignedOut();
-  }
-
-  init();
-</script>
-
-</body>
-</html>
+/* ---------- Responsive and motion ---------- */
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  header { padding: 8px 12px 0; }
+  .wrap, .footer-inner { padding-left: 12px; padding-right: 12px; }
+  .topbar { padding-left: 12px; }
+  .nav-item { padding: 7px 10px; }
+  .hero { padding-top: 20px; }
+  .hero-inner { padding: 28px 22px; border-radius: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
