@@ -64,7 +64,8 @@
   var idx = -1;
   pages.forEach(function (p, i) { if (p[0] === file) idx = i; });
   var next = (idx > -1 && idx < pages.length - 1) ? pages[idx + 1] : null;
-  if (!next || reduceMotion) return;
+  // Page-to-page scrolling is navigation, not decoration, so it works even when reduced motion is on.
+  if (!next) return;
 
   var WHEEL_THRESHOLD = 900;   // accumulated wheel distance at the bottom
   var TOUCH_THRESHOLD = 220;   // swipe distance at the bottom, in px
