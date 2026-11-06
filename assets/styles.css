@@ -17,11 +17,11 @@
   --text-sec: #A6A5B3;        /* secondary text */
 
   /* Brand crimson (logo) */
-  --crimson: #B51F36;
-  --crimson-hover: #C92A42;
-  --crimson-text: #D9485D;    /* crimson lightened for small text on dark backgrounds */
-  --crimson-soft: rgba(181, 31, 54, .16);
-  --crimson-glow: rgba(181, 31, 54, .35);
+  --crimson: #B71E40;
+  --crimson-hover: #CC2A4C;
+  --crimson-text: #DF4F6E;    /* crimson lightened for small text on dark backgrounds */
+  --crimson-soft: rgba(183, 30, 64, .16);
+  --crimson-glow: rgba(183, 30, 64, .35);
 
   --base: var(--midnight);
   --text: var(--text-main);
@@ -40,7 +40,7 @@
   --edge-hi: rgba(216, 214, 226, .1);
   --shadow: 0 12px 40px rgba(0, 0, 0, .38);
   --shadow-hover: 0 18px 50px rgba(0, 0, 0, .45), 0 0 0 1px rgba(150, 147, 176, .22);
-  --mica-1: rgba(181, 31, 54, .26);
+  --mica-1: rgba(183, 30, 64, .26);
   --mica-2: rgba(119, 117, 143, .2);
   --mica-3: rgba(52, 53, 65, .7);
   --mica-4: rgba(216, 214, 226, .05);
@@ -261,7 +261,7 @@ main > section.alt {
 .anniv { padding: 40px 0 !important; }
 .anniv-panel {
   display: flex; flex-wrap: wrap; align-items: center; gap: 32px; padding: 40px;
-  background: linear-gradient(135deg, rgba(181, 31, 54, .55), rgba(70, 12, 22, .55));
+  background: linear-gradient(135deg, rgba(183, 30, 64, .55), rgba(70, 12, 22, .55));
   border-color: rgba(216, 214, 226, .18);
   border-radius: 20px;
 }
@@ -284,7 +284,7 @@ main > section.alt {
   font-size: 14px; color: var(--text);
   transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
-.chip:hover { background: rgba(181, 31, 54, .26); border-color: rgba(150, 147, 176, .5); }
+.chip:hover { background: rgba(183, 30, 64, .26); border-color: rgba(150, 147, 176, .5); }
 
 /* ---------- Timeline ---------- */
 .timeline {
@@ -411,7 +411,7 @@ a.app:hover .app-store { letter-spacing: .02em; }
   border-radius: 12px; background: var(--crimson-soft); color: var(--crimson-text);
   transition: transform var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.grid .card:hover .card-icon { transform: scale(1.06); background: rgba(181, 31, 54, .26); }
+.grid .card:hover .card-icon { transform: scale(1.06); background: rgba(183, 30, 64, .26); }
 .app-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
 .app-card > p { flex: none; }
 .app-features { margin: 12px 0; padding-left: 18px; color: var(--text-2); font-size: 15px; }
@@ -441,7 +441,7 @@ a.app:hover .app-store { letter-spacing: .02em; }
 .cta-banner {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
   margin-top: 80px; padding: 40px; border-radius: 20px;
-  background: linear-gradient(135deg, rgba(181, 31, 54, .6), rgba(90, 16, 30, .6));
+  background: linear-gradient(135deg, rgba(183, 30, 64, .6), rgba(92, 14, 36, .6));
   border: 1px solid rgba(216, 214, 226, .18);
 }
 .cta-banner h2 { font-size: 28px; font-weight: 650; color: #ffffff; margin-bottom: 6px; }
@@ -513,8 +513,8 @@ body::before { animation: mica-drift 26s ease-in-out infinite alternate; will-ch
 
 /* Download button breathes */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(181, 31, 54, 0); }
-  50%      { box-shadow: 0 0 0 6px rgba(181, 31, 54, .12); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(183, 30, 64, 0); }
+  50%      { box-shadow: 0 0 0 6px rgba(183, 30, 64, .12); }
 }
 .nav-item.nav-cta { animation: glow-pulse 3.2s ease-in-out infinite; }
 
@@ -570,7 +570,7 @@ body::before { animation: mica-drift 26s ease-in-out infinite alternate; will-ch
 /* ---------- Polish and more motion ---------- */
 
 /* Finishing touches */
-::selection { background: rgba(181, 31, 54, .45); color: #ffffff; }
+::selection { background: rgba(183, 30, 64, .45); color: #ffffff; }
 html { scrollbar-color: var(--titanium) var(--midnight); scrollbar-width: thin; }
 
 /* Page fades in once */
@@ -617,7 +617,7 @@ body { animation: page-in .6s var(--ease) both; }
 .anniv-num { animation: num-glow 4s ease-in-out infinite; }
 @keyframes num-glow {
   0%, 100% { text-shadow: 0 6px 30px rgba(0, 0, 0, .3); }
-  50%      { text-shadow: 0 6px 34px rgba(181, 31, 54, .55), 0 0 2px rgba(255, 255, 255, .3); }
+  50%      { text-shadow: 0 6px 34px rgba(183, 30, 64, .55), 0 0 2px rgba(255, 255, 255, .3); }
 }
 
 /* Buttons: a small lift on press-release and a clearer focus ring */
