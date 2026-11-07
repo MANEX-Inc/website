@@ -5,11 +5,11 @@
     <meta name="msvalidate.01" content="A043E2304D9712075BA56ECF57D7EE7D" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANEX Inc. | The Future, by Design</title>
-    <meta name="description" content="MANEX Inc. builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
+    <title>MANEX Labs | The Future, by Design</title>
+    <meta name="description" content="MANEX Labs builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
     <meta name="theme-color" content="#0d0a0a" />
-    <meta property="og:title" content="MANEX Inc. | The Future, by Design" />
-    <meta property="og:description" content="MANEX Inc. builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
+    <meta property="og:title" content="MANEX Labs | The Future, by Design" />
+    <meta property="og:description" content="MANEX Labs builds practical desktop apps for Windows, including Surfer, ContextOS, and DevDen, plus Volt, our AI assistant." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://manex-inc.github.io/website/index.html" />
     <link rel="canonical" href="https://manex-inc.github.io/website/index.html" />
@@ -26,7 +26,7 @@
     {
       "@type": "Organization",
       "@id": "https://manex-inc.github.io/website/#organization",
-      "name": "MANEX Inc.",
+      "name": "MANEX Labs",
       "url": "https://manex-inc.github.io/website/",
       "logo": "https://manex-inc.github.io/website/assets/logo.png",
       "foundingDate": "2020-11-20",
@@ -39,7 +39,7 @@
       "@type": "WebSite",
       "@id": "https://manex-inc.github.io/website/#website",
       "url": "https://manex-inc.github.io/website/",
-      "name": "MANEX Inc.",
+      "name": "MANEX Labs",
       "publisher": {
         "@id": "https://manex-inc.github.io/website/#organization"
       }
@@ -54,12 +54,14 @@
         <nav class="topbar">
             <div class="wrap">
                 <a class="nav-logo" href="index.html">
-                    <img src="assets/logo.png" alt="MANEX Inc. logo" />
-                    <span>MANEX Inc.</span>
+                    <img src="assets/logo.png" alt="MANEX Labs logo" />
+                    <span>MANEX Labs</span>
                 </a>
-                <ul class="nav-links">
+                                <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+                <ul class="nav-links" id="site-nav">
                     <li><a class="nav-item active" href="index.html" aria-current="page">Home</a></li>
                     <li><a class="nav-item" href="products.html">Products</a></li>
+                    <li><a class="nav-item" href="releases.html">Releases</a></li>
                     <li><a class="nav-item" href="about.html">About</a></li>
                     <li><a class="nav-item" href="community.html">Community</a></li>
                     <li><a class="nav-item" href="cation.html">Cation</a></li>
@@ -70,17 +72,18 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero hero-banner">
+            <div class="hero-bg" aria-hidden="true"></div>
             <div class="wrap">
                 <div class="hero-brand">
                     <img src="assets/logo.png" alt="" />
-                    <span>MANEX Inc.</span>
+                    <span>MANEX Labs</span>
                 </div>
                 <h1>The Future, by Design.</h1>
-                <p class="lede">MANEX Inc. builds lightweight desktop apps and tools that stay out of your way and help you get work done.</p>
+                <p class="lede">MANEX Labs makes lightweight desktop apps for Windows: fast, dependable tools that stay out of your way and help you get work done.</p>
                 <div class="hero-btns">
-                    <a class="btn btn-primary" href="download.html">Download apps</a>
-                    <a class="btn btn-outline" href="products.html">Explore products</a>
+                    <a class="btn btn-primary" href="products.html">Explore products</a>
+                    <a class="btn btn-outline" href="about.html">Discover MANEX</a>
                 </div>
             </div>
         </section>
@@ -90,7 +93,7 @@
                 <div class="anniv-panel">
                     <div class="anniv-num">6</div>
                     <div>
-                        <h2>Happy 6th anniversary, MANEX Inc.</h2>
+                        <h2>Happy 6th anniversary, MANEX Labs</h2>
                         <p>Six years ago, two best friends started something small. Thank you to everyone who has built, tested, and followed along with us.</p>
                         <a class="btn btn-light" href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Celebrate with us on Discord</a>
                     </div>
@@ -204,11 +207,51 @@
         </section>
     </main>
 
+        <section class="section">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Who we are</span>
+                    <h2>What we're for</h2>
+                    <p>MANEX Labs was founded on 20 November 2020 by two best friends who wanted to build small, useful tools that people actually enjoy using. Over six years, that idea has grown into a range of desktop apps and an AI assistant called Volt.</p>
+                </div>
+                <div class="btn-row"><a class="btn btn-outline" href="about.html">Read our story</a></div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Our philosophy</span>
+                    <h2>How we build</h2>
+                    <p>Four principles behind every app we ship.</p>
+                </div>
+                <div class="principles">
+                    <div class="principle"><h3>Practicality</h3><p>Tools that solve a real problem and stay out of the way.</p></div>
+                    <div class="principle"><h3>Thoughtful design</h3><p>Clear interfaces that respect how people actually work.</p></div>
+                    <div class="principle"><h3>Reliability</h3><p>Software that starts quickly, behaves predictably, and keeps working.</p></div>
+                    <div class="principle"><h3>Continuous improvement</h3><p>Updates shaped by feedback from the people who use our apps.</p></div>
+                </div>
+            </div>
+        </section>
+        <section class="section alt">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Latest releases</span>
+                    <h2>Recently shipped</h2>
+                    <p>The newest updates across our apps.</p>
+                </div>
+                <div class="principles">
+                    <div class="principle"><h3>ContextOS</h3><p>Initial release, 19 October 2026.</p></div>
+                    <div class="principle"><h3>Surfer X</h3><p>Bug fixes release, 5 October 2026.</p></div>
+                    <div class="principle"><h3>DevDen</h3><p>Initial release, 29 September 2026.</p></div>
+                </div>
+                <div class="btn-row"><a class="btn btn-outline" href="releases.html">See all releases</a></div>
+            </div>
+        </section>
     <footer>
         <div class="wrap">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <div class="hero-brand"><img src="assets/logo.png" alt="" style="width:26px;height:26px;" /><span>MANEX Inc.</span></div>
+                    <div class="hero-brand"><img src="assets/logo.png" alt="" style="width:26px;height:26px;" /><span>MANEX Labs</span></div>
                     <p>Practical desktop tools and developer apps for Windows.</p>
                 </div>
                 <div class="footer-col">
@@ -225,6 +268,7 @@
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
+                        <li><a href="releases.html">Releases</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="community.html">Community</a></li>
                         <li><a href="mailto:akshaj.k32411@outlook.com">Contact</a></li>
@@ -234,6 +278,8 @@
                     <h4>Resources</h4>
                     <ul>
                         <li><a href="download.html">Download</a></li>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
                         <li><a href="https://discord.gg/GRSvEkccnQ" target="_blank" rel="noopener">Discord</a></li>
                         <li><a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener">GitHub</a></li>
                         <li><a href="https://apps.microsoft.com/search/publisher?name=MANEX-Inc." target="_blank" rel="noopener">Microsoft Store</a></li>
@@ -241,7 +287,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 MANEX Inc. All rights reserved.</p>
+                <p>© 2026 MANEX Labs All rights reserved.</p>
                 <p>Found an issue or bug on this website? Email <a href="mailto:akshaj.k32411@outlook.com">akshaj.k32411@outlook.com</a>.</p>
             </div>
         </div>
