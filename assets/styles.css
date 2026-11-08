@@ -668,7 +668,7 @@ footer::after{background:linear-gradient(180deg,rgba(163,168,182,.45),rgba(202,3
 /* Header and dock arrive with the page */
 header .topbar .wrap{animation:slide-down .9s var(--ease) .05s both}
 .dock{animation:dock-in .8s var(--ease) .9s both}
-.nav-item{animation:slide-up-fade .6s var(--ease) both}
+.nav-item{animation:slide-up-fade .6s var(--ease) backwards}
 .nav-links .nav-item:nth-child(1){animation-delay:.25s}.nav-links .nav-item:nth-child(2){animation-delay:.32s}
 .nav-links .nav-item:nth-child(3){animation-delay:.39s}.nav-links .nav-item:nth-child(4){animation-delay:.46s}
 .nav-links .nav-item:nth-child(5){animation-delay:.53s}.nav-links .nav-item:nth-child(6){animation-delay:.60s}
@@ -680,7 +680,6 @@ header .topbar .wrap{animation:slide-down .9s var(--ease) .05s both}
 
 /* Logo gently glows; nav link underline slides in on hover */
 .nav-logo img{animation:glow-breathe 4.5s ease-in-out infinite}
-.nav-item:not(.nav-cta):hover{background-image:linear-gradient(var(--crimson-hi),var(--crimson-hi));background-repeat:no-repeat;background-position:50% calc(100% - 4px);animation:underline-run .4s var(--ease) both}
 
 /* Hero: shimmering headline, floating screenshot, third orb, live eyebrow dot */
 .hero h1{background-size:100% 200%}
@@ -845,3 +844,242 @@ html{-webkit-tap-highlight-color:transparent}
   .hero-shot{animation:none}
 }
 @media(prefers-reduced-motion:reduce){.instant *{animation:none!important}}
+
+/* Nav hover underline: pure transition, nothing restarts */
+.nav-item:not(.nav-cta)::after{display:block;left:16px;right:16px;bottom:7px;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-item:not(.nav-cta):hover::after{transform:scaleX(1)}
+.nav-item.active:not(.nav-cta)::after{transform:scaleX(0)}
+@media(hover:none){.nav-item:not(.nav-cta):hover::after{transform:scaleX(0)}}
+
+
+/* =====================================================
+   v14: crafted pass. Solid surfaces, hairlines, tighter radii,
+   no glow or gloss. All motion is kept.
+   ===================================================== */
+:root{--panel:#171a20;--panel-2:#1d2027;--line:#2a2d36;--line-2:#3a3e49;--r:12px}
+
+/* Flat, quiet backdrop: no aurora, no noise, no moving blobs */
+body::before{animation:none;will-change:auto;background:radial-gradient(70vmax 38vmax at 8% -10%,rgba(229,36,44,.10),transparent 70%)}
+body::after{display:none}
+.orb,.orb-a,.orb-b,.orb-c,.hero-banner::before,.hero-banner::after{display:none!important}
+.hero-spot{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.05),transparent 70%)}
+
+/* Header: a plain bar with a hairline, not a floating glass pill */
+header{padding-top:0;pointer-events:auto;background:rgba(13,15,19,.9);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:none}
+.topbar .wrap{width:min(1120px,100% - 3rem);min-height:66px;padding:0;border-radius:0;background:none;border:0;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+header .topbar .wrap{border:0;box-shadow:none}
+.nav-item{border-radius:8px}
+.nav-item.active{background:rgba(255,255,255,.06);box-shadow:none;color:#fff}
+.nav-item:hover{background:rgba(255,255,255,.05)}
+.nav-item.active:not(.nav-cta)::after{transform:scaleX(1)}
+.nav-toggle{border-radius:10px}
+.nav-links{border-radius:12px;background:var(--panel);box-shadow:0 24px 50px -24px rgba(0,0,0,.8)}
+.nav-logo img{animation:none}
+
+/* Surfaces: solid panels with a hairline border */
+.principle,.app,.card,.step,.volt,.cta-banner,.showcase-visual,.discord-embed,.hero-shot,.key-value,.next-hint,.pal,.dock button{
+  background-color:var(--panel);background-image:none;border:1px solid var(--line);
+  backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 14px 30px -22px rgba(0,0,0,.7)}
+.principle,.app,.card,.step{border-radius:var(--r)}
+.volt,.cta-banner{border-radius:16px;background-color:var(--panel-2)}
+.hero-shot{border-radius:14px;padding:8px}
+.hero-shot img{border-radius:8px}
+.showcase-visual{border-radius:14px;background-image:radial-gradient(circle at 30% 20%,rgba(229,36,44,.10),transparent 65%)}
+.showcase-visual::after{display:none}
+.bento .app:nth-child(1){background-image:linear-gradient(160deg,rgba(229,36,44,.12),transparent 60%);background-color:var(--panel-2)}
+.bento .app:nth-child(2){background-image:none;background-color:var(--panel-2)}
+.hero-shot::after,.volt::after,.cta-banner::after{display:none}
+.pal{border-radius:14px;background-color:var(--panel)}
+.pal-back{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.pal li{border-radius:8px}
+.pal li.act{background:rgba(255,255,255,.07);box-shadow:none}
+.pal li.act small{color:var(--crimson-text)}
+
+/* Hover: lift with a neutral shadow and a red edge, no glow */
+a.app:hover,.grid .card:hover{border-color:var(--crimson);box-shadow:0 24px 44px -26px rgba(0,0,0,.85);background-color:var(--panel-2)}
+.app::before,.grid .card::before{background:radial-gradient(300px circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.05),transparent 70%)}
+.principle:hover,.step:hover{box-shadow:0 24px 44px -26px rgba(0,0,0,.85);border-color:var(--line-2)}
+
+/* Top rule on principles and steps draws across on hover instead of a glowing tab */
+.principle::after,.step::after{left:0;right:0;top:0;width:auto!important;height:2px;border-radius:0;box-shadow:none;
+  background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.principle:hover::after,.step:hover::after{transform:scaleX(1)}
+
+/* Headlines: solid, confident, no gradient-clipped text */
+.hero h1{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--text);letter-spacing:-.045em;font-weight:700;padding-bottom:0}
+.page-title{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--text);animation:none;letter-spacing:-.04em}
+h1,h2,h3,h4{letter-spacing:-.022em}
+.eyebrow::before{display:none}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--crimson-text)}
+.section-head h2::after{display:none}
+.anniv-num{filter:none;animation:none;-webkit-text-stroke:2px var(--crimson)}
+.anniv-panel{background:none}
+
+/* Buttons: flat fills, no gradient, no glow, no gloss shadow */
+.btn{border-radius:8px;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+.btn-primary,.nav-item.nav-cta{background-image:none;background-color:var(--crimson);border-color:var(--crimson);box-shadow:none;animation:none}
+.btn-primary:hover,.nav-item.nav-cta:hover{background-image:none;background-color:var(--crimson-hi);border-color:var(--crimson-hi);box-shadow:none}
+.btn:not(.btn-primary):not(.btn-light){background:transparent;border-color:var(--line-2);box-shadow:none}
+.btn:not(.btn-primary):not(.btn-light):hover{background:rgba(255,255,255,.06);border-color:var(--text-2)}
+.btn-light{box-shadow:none}
+.btn:hover::before{animation:sweep .8s var(--ease);background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.12) 50%,transparent 65%)}
+.hero-btns .btn-primary{animation:none}
+
+/* Small pieces */
+.chip{border-radius:6px;background:transparent;border-color:var(--line-2);color:var(--text-2);backdrop-filter:none;-webkit-backdrop-filter:none;animation:none}
+.chip:hover{border-color:var(--crimson);color:var(--text)}
+.card-icon{border-radius:10px;animation:none;transition:transform .4s var(--ease),background .3s}
+.card:hover .card-icon{transform:translateY(-3px) rotate(-4deg);background:rgba(229,36,44,.22)}
+.showcase-visual svg{filter:none;animation:float-y-sm 7s ease-in-out infinite}
+.hero-brand img,.nav-logo img{animation:none;filter:none}
+.hero-shot{animation:none}
+.text-input{border-radius:8px;backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ink)}
+.text-input:focus{box-shadow:0 0 0 3px rgba(229,36,44,.22)}
+
+/* Timeline: plain ruled rows that slide, instead of tinted cards with a red edge */
+.timeline{gap:0;border-top:1px solid var(--line-2)}
+.timeline li{border:0;border-bottom:1px solid var(--line);border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:22px 0}
+.timeline li:hover{background:none;border-color:var(--line);padding-left:0;transform:translateX(10px)}
+.when{color:var(--text-3)}
+
+/* Ticker, section bands, footer */
+.ticker{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line)}
+.ticker span{color:var(--text-3)}
+.ticker span::after{width:6px;height:6px;box-shadow:none;background:var(--crimson)}
+.section.alt,main>section.alt{background:rgba(255,255,255,.015);border-image:none}
+footer{background:var(--ink-2);background-image:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+footer::after{animation:none;background:none;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07)}
+
+/* Progress, dock, cursor: crisp */
+.scroll-progress{height:2px;background:var(--crimson);box-shadow:none;animation:none}
+.dock button{border-radius:12px}
+.dock .jump{border-radius:12px}
+.dock .to-top{border-radius:12px}
+.dock button:hover{border-color:var(--crimson);box-shadow:0 14px 30px -18px rgba(0,0,0,.9)}
+.dock kbd{border-radius:5px}
+.cursor-ring{border-color:rgba(255,255,255,.4);background:none}
+.cursor-ring.big{background:rgba(229,36,44,.12);box-shadow:none;border-color:var(--crimson-hi)}
+::selection{background:rgba(229,36,44,.5)}
+
+@media(max-width:900px){
+  header{padding-top:0}
+  .topbar .wrap{padding:0}
+  .principle,.app,.card,.step,.volt,.cta-banner,.showcase-visual,.discord-embed,.hero-shot,.key-value,.timeline li,.ticker,.btn,.chip,.text-input{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .topbar .wrap{backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+
+/* Desktop nav: links sit directly on the bar, no boxed container */
+@media(min-width:861px){.nav-links{background:none;border:0;box-shadow:none;border-radius:0;padding:0}}
+
+
+/* =====================================================
+   v15: Windows 11 materials. Mica base + acrylic panes.
+   Static, layered, restrained: no neon, no gradient text.
+   ===================================================== */
+:root{
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+  --acrylic:rgba(40,42,49,.56);
+  --acrylic-hi:rgba(54,57,66,.62);
+  --stroke:rgba(255,255,255,.09);
+  --stroke-hi:rgba(255,255,255,.18);
+  --elev:0 1px 2px rgba(0,0,0,.3),0 16px 34px -14px rgba(0,0,0,.55);
+  --flyout:0 0 8px rgba(0,0,0,.25),0 36px 70px -18px rgba(0,0,0,.75);
+  --blur-a:blur(30px) saturate(130%);
+}
+
+/* Mica: a heavily blurred, tinted wallpaper that stays put behind everything */
+body{background:#121317}
+body::before{position:fixed;inset:0;height:auto;z-index:-2;animation:none;will-change:auto;
+  background:
+   radial-gradient(52vmax 44vmax at 6% -4%,rgba(229,36,44,.24),transparent 70%),
+   radial-gradient(46vmax 46vmax at 100% 4%,rgba(160,168,192,.17),transparent 70%),
+   radial-gradient(60vmax 50vmax at 46% 112%,rgba(86,96,128,.34),transparent 72%),
+   radial-gradient(30vmax 30vmax at 88% 60%,rgba(229,36,44,.07),transparent 70%),
+   #121317}
+body::after{display:block;opacity:.6;z-index:-1;background-image:var(--noise);background-size:140px 140px}
+
+/* Acrylic panes: tint + blur + grain + hairline edge + soft elevation */
+.principle,.app,.card,.step,.discord-embed,.hero-shot,.key-value,.next-hint,.showcase-visual,.timeline li{
+  background-color:var(--acrylic);background-image:var(--noise);background-size:140px 140px;
+  border:1px solid var(--stroke);backdrop-filter:var(--blur-a);-webkit-backdrop-filter:var(--blur-a);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--elev)}
+.principle,.app,.card,.step{border-radius:10px}
+.hero-shot{border-radius:12px;padding:8px}
+.showcase-visual{border-radius:12px;background-image:var(--noise),radial-gradient(circle at 30% 20%,rgba(229,36,44,.16),transparent 65%)}
+.volt,.cta-banner{background-color:var(--acrylic);background-image:var(--noise),linear-gradient(120deg,rgba(229,36,44,.26),rgba(255,255,255,.02) 62%);
+  background-size:140px 140px,100% 100%;border:1px solid var(--stroke);border-radius:14px;backdrop-filter:var(--blur-a);-webkit-backdrop-filter:var(--blur-a);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),var(--elev)}
+.bento .app:nth-child(1){background-image:var(--noise),radial-gradient(circle at 85% 10%,rgba(229,36,44,.28),transparent 60%);background-color:var(--acrylic-hi)}
+.bento .app:nth-child(2){background-image:var(--noise),radial-gradient(circle at 12% 110%,rgba(160,168,192,.2),transparent 60%);background-color:var(--acrylic-hi)}
+
+/* Reveal-style hover: edge brightens, surface lifts a step */
+a.app:hover,.grid .card:hover{background-color:var(--acrylic-hi);border-color:rgba(229,36,44,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 2px 4px rgba(0,0,0,.3),0 26px 46px -20px rgba(0,0,0,.8)}
+.principle:hover,.step:hover{background-color:var(--acrylic-hi);border-color:var(--stroke-hi);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 26px 46px -22px rgba(0,0,0,.8)}
+.app::before,.grid .card::before{background:radial-gradient(300px circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.08),transparent 70%)}
+
+/* Title bar: floating Mica/acrylic bar with 12px corners (Windows 11 flyout shape) */
+header{padding-top:12px;pointer-events:none;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.topbar .wrap{pointer-events:auto;width:min(1120px,100% - 2rem);min-height:60px;padding:0 10px 0 18px;border-radius:12px;
+  background-color:rgba(36,38,45,.62);background-image:var(--noise);background-size:140px 140px;
+  border:1px solid var(--stroke);backdrop-filter:blur(34px) saturate(140%);-webkit-backdrop-filter:blur(34px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 36px -16px rgba(0,0,0,.7)}
+header .topbar .wrap{border:1px solid var(--stroke)}
+.nav-item{border-radius:6px}
+.nav-item:hover{background:rgba(255,255,255,.06)}
+.nav-item.active{background:rgba(255,255,255,.08);box-shadow:none}
+/* NavigationView-style short selection indicator */
+.nav-item:not(.nav-cta)::after{left:50%;right:auto;width:18px;margin-left:-9px;height:3px;border-radius:3px;bottom:3px}
+.nav-toggle{border-radius:8px;background:rgba(255,255,255,.05)}
+@media(min-width:861px){.nav-links{background:none;border:0;box-shadow:none;border-radius:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(max-width:860px){
+  header{padding-top:10px}
+  .topbar .wrap{padding:0 8px 0 14px}
+  .nav-links{border-radius:12px;background-color:rgba(36,38,45,.82);background-image:var(--noise);border:1px solid var(--stroke);
+    backdrop-filter:var(--blur-a);-webkit-backdrop-filter:var(--blur-a);box-shadow:var(--flyout)}
+}
+
+/* Controls */
+.btn{border-radius:6px;backdrop-filter:none;-webkit-backdrop-filter:none}
+.btn:not(.btn-primary):not(.btn-light){background:rgba(255,255,255,.06);border-color:var(--stroke);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.btn:not(.btn-primary):not(.btn-light):hover{background:rgba(255,255,255,.1);border-color:var(--stroke-hi)}
+.btn-primary,.nav-item.nav-cta{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 1px 2px rgba(0,0,0,.35)}
+.btn-primary:hover,.nav-item.nav-cta:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 6px 14px -6px rgba(0,0,0,.6)}
+.chip{border-radius:6px;background:rgba(255,255,255,.05);border-color:var(--stroke);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.text-input{border-radius:6px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.text-input:focus{border-color:var(--stroke-hi);box-shadow:inset 0 -2px 0 var(--crimson-hi)}
+
+/* Timeline as quiet acrylic list items */
+.timeline{gap:8px;border-top:0}
+.timeline li{border-radius:8px;padding:18px 22px;border-left:1px solid var(--stroke)}
+.timeline li:hover{background-color:var(--acrylic-hi);border-color:var(--stroke-hi);padding-left:22px;transform:translateX(8px)}
+.when{color:var(--text-3)}
+
+/* Ticker, footer, dock, palette */
+.ticker{background:rgba(255,255,255,.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--stroke)}
+footer{background-color:rgba(22,23,28,.72);background-image:var(--noise);background-size:140px 140px;border-top:1px solid var(--stroke);
+  backdrop-filter:var(--blur-a);-webkit-backdrop-filter:var(--blur-a)}
+.dock button{background-color:rgba(36,38,45,.7);background-image:var(--noise);background-size:140px 140px;border:1px solid var(--stroke);border-radius:10px;
+  backdrop-filter:var(--blur-a);-webkit-backdrop-filter:var(--blur-a);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 30px -14px rgba(0,0,0,.8)}
+.dock .jump,.dock .to-top{border-radius:10px}
+.pal-back{background:rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pal{background-color:rgba(34,36,43,.8);background-image:var(--noise);background-size:140px 140px;border:1px solid var(--stroke-hi);border-radius:12px;
+  backdrop-filter:blur(40px) saturate(140%);-webkit-backdrop-filter:blur(40px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),var(--flyout)}
+.pal input{border-bottom:1px solid var(--stroke)}
+.pal li{border-radius:6px}
+.pal li.act{background:rgba(255,255,255,.09)}
+
+/* Phones: same materials, lighter blur */
+@media(max-width:900px){
+  .principle,.app,.card,.step,.discord-embed,.hero-shot,.key-value,.showcase-visual,.timeline li,.volt,.cta-banner{backdrop-filter:blur(16px) saturate(125%);-webkit-backdrop-filter:blur(16px) saturate(125%)}
+  .topbar .wrap{backdrop-filter:blur(22px) saturate(130%);-webkit-backdrop-filter:blur(22px) saturate(130%)}
+  footer,.dock button{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+  .ticker{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  body::after{display:none}
+}
+
+/* Fix: grain tiles at 140px, the colour tint covers the whole surface (no checkerboard) */
+.bento .app:nth-child(1),.bento .app:nth-child(2),.showcase-visual{background-size:140px 140px,100% 100%;background-repeat:repeat,no-repeat}
