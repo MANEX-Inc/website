@@ -104,6 +104,26 @@
   ]
 }
     </script>
+    <style>
+        /* Microsoft Store badges: scaled down so they sit neatly on the app cards */
+        ms-store-badge { zoom: 0.7; }
+
+        /* Surfer Legacy gallery */
+        #surfer-legacy .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+        #surfer-legacy figure.card { padding: 12px; }
+        #surfer-legacy figure img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+        }
+        #surfer-legacy figcaption {
+            padding: 12px 6px 4px;
+            font-weight: 600;
+            color: var(--text);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -240,6 +260,45 @@
                         <h3>MANEX Labs on GitHub</h3>
                         <p>Source and project updates for our open work.</p>
                         <a href="https://github.com/MANEX-Inc" target="_blank" rel="noopener" class="card-link">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+
+                <div id="surfer-legacy" style="margin-top:5rem;">
+                    <span class="eyebrow">History</span>
+                    <h2 class="page-title" style="margin-bottom:2rem;">Surfer Legacy</h2>
+                    <div class="grid">
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-1.png" alt="Surfer 1" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 1</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-2.png" alt="Surfer 2" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 2</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-3.png" alt="Surfer 3" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 3</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-4.png" alt="Surfer 4" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 4</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-5.png" alt="Surfer 5" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 5</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-6.png" alt="Surfer 6" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer 6</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-x.png" alt="Surfer X" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer X</figcaption>
+                        </figure>
+                        <figure class="card" style="margin:0;">
+                            <img src="assets/surfer-pro.png" alt="Surfer Pro" style="width:100%;height:auto;border-radius:8px;" />
+                            <figcaption>Surfer Pro</figcaption>
+                        </figure>
                     </div>
                 </div>
 
